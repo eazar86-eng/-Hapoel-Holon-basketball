@@ -1,0 +1,21 @@
+{
+  "name": "הפועל אבי חולון · נערים י׳ לאומית",
+  "short_name": "אבי חולון",
+  "description": "מרכז הקבוצה של הפועל אבי חולון נערים י׳ לאומית",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3e9",
+  "theme_color": "#35185f",
+  "orientation": "portrait-primary",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
