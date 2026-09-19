@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#35185f">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <title>Beta | אבי חולון</title>
 <style>
 :root{--p:#35185f;--p2:#623ba0;--y:#f2c433;--bg:#ebe8ef;--card:#fff;--ink:#21172f;--muted:#746d80;--line:rgba(53,24,95,.11);--green:#1d8d61}
@@ -48,11 +49,13 @@ body{margin:0;background:radial-gradient(circle at 50% -10%,#fff 0,#f2eff5 40%,#
 .staff-lock{background:linear-gradient(145deg,#fff,#f5f1fa);border:1px solid var(--line);border-radius:18px;padding:15px}.lockicon{width:48px;height:48px;border-radius:15px;background:#eee8f8;display:grid;place-items:center;font-size:23px;margin-bottom:10px}.staff-lock strong{display:block;color:var(--p)}.staff-lock p{font-size:11px;color:var(--muted);line-height:1.5}.fake-field{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;color:#777;margin-top:8px;text-align:right}.full-btn{width:100%;border:0;border-radius:12px;padding:11px;background:var(--p);color:#fff;font-weight:950;margin-top:8px}
 .offline-banner{display:none;background:#fff1c7;color:#6b5600;border:1px solid #e2c25a;border-radius:12px;padding:9px 11px;font-size:10px;font-weight:900;margin:0 0 10px}.offline-banner.show{display:block}
 .toast{position:absolute;z-index:100;left:50%;bottom:92px;transform:translate(-50%,20px);background:#21172f;color:#fff;border-radius:999px;padding:9px 14px;font-size:10px;font-weight:900;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.staff-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.staff-panel h3{margin:0 0 6px;color:var(--p);font-size:16px}.staff-panel p{margin:0 0 10px;color:var(--muted);font-size:10px;line-height:1.5}.field{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;color:var(--ink);margin:6px 0;font:inherit}.field:focus{outline:2px solid rgba(98,59,160,.18);border-color:var(--p)}textarea.field{min-height:80px;resize:vertical}.staff-actions{display:flex;gap:7px;flex-wrap:wrap}.staff-btn{border:0;border-radius:11px;padding:10px 12px;background:var(--p);color:#fff;font-size:10px;font-weight:950}.staff-btn.secondary{background:#eee8f8;color:var(--p)}.staff-btn.warn{background:#fff1c7;color:#6b5600}.staff-user{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;background:#f7f4fb;border-radius:13px;margin-bottom:10px}.staff-user strong{display:block;color:var(--p);font-size:12px}.staff-user span{display:block;color:var(--muted);font-size:9px;margin-top:2px}.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}.dash-card{background:#f8f6fa;border:1px solid var(--line);border-radius:14px;padding:11px}.dash-card b{display:block;color:var(--p);font-size:18px}.dash-card span{font-size:9px;color:var(--muted);font-weight:800}.attendance-list{display:grid;gap:6px;margin-top:8px}.att-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:#f8f6fa;border:1px solid var(--line);border-radius:12px;padding:9px}.att-row strong{font-size:11px;color:var(--p)}.att-controls{display:flex;gap:4px}.att-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 7px;font-size:9px;font-weight:900;color:var(--muted)}.att-btn.active.present{background:#e5f6ee;color:#14774f;border-color:#a9dec8}.att-btn.active.absent{background:#fde9e9;color:#a53333;border-color:#efb6b6}.att-btn.active.late{background:#fff3d5;color:#8a6500;border-color:#ecd28a}.staff-note{font-size:9px;color:var(--muted);line-height:1.45;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="stage">
-  <div class="caption"><span>Beta v0.6</span><span class="live"><span class="dot"></span>נתונים חיים מהאתר</span></div>
+  <div class="caption"><span>Beta v0.7</span><span class="live"><span class="dot"></span>נתונים חיים מהאתר</span></div>
   <div class="phone">
     <div class="island"></div>
     <div class="app">
@@ -94,7 +97,28 @@ body{margin:0;background:radial-gradient(circle at 50% -10%,#fff 0,#f2eff5 40%,#
           <div class="notice">הסגל הציבורי מוצג ללא תמונות, מספרי טלפון, כתובות דוא״ל או מידע אישי רגיש.</div>
         </section>
         <section class="screen" data-screen="more">
-          <div class="section">מרכז האפליקציה</div><div class="grid"><button class="tile" id="openNotifications"><b>🔔</b><strong>מרכז עדכונים</strong><span>שינויים, הודעות ותזכורות</span></button><button class="tile goto" data-go="schedule"><b>🗓️</b><strong>לוח חודשי</strong><span>כל הפעילויות במקום אחד</span></button></div><div class="section">עוד</div>
+          <div class="section">מרכז האפליקציה</div><div class="grid"><button class="tile" id="openNotifications"><b>🔔</b><strong>מרכז עדכונים</strong><span>שינויים, הודעות ותזכורות</span></button><button class="tile goto" data-go="schedule"><b>🗓️</b><strong>לוח חודשי</strong><span>כל הפעילויות במקום אחד</span></button></div><div class="section">אזור צוות Beta</div>
+          <div id="staffLoginCard" class="staff-panel">
+            <h3>כניסה לצוות</h3>
+            <p>הכניסה מיועדת לאנשי צוות שאושרו מראש. תקבל קישור חד־פעמי למייל.</p>
+            <input id="staffEmail" class="field" type="email" inputmode="email" autocomplete="email" placeholder="כתובת מייל">
+            <button id="staffLoginBtn" class="full-btn">שלח קישור כניסה</button>
+            <div id="staffLoginMsg" class="staff-note"></div>
+          </div>
+          <div id="staffDashboard" class="staff-panel" style="display:none">
+            <div class="staff-user"><div><strong id="staffName">צוות</strong><span id="staffRole"></span></div><button id="staffLogoutBtn" class="staff-btn secondary">יציאה</button></div>
+            <div class="dash-grid"><div class="dash-card"><b id="dashSessions">0</b><span>פעילויות השבוע</span></div><div class="dash-card"><b id="dashUpdates">0</b><span>עדכונים שפורסמו</span></div></div>
+            <div class="section" style="font-size:14px;margin-top:12px">פרסום הודעה</div>
+            <input id="updateTitleInput" class="field" placeholder="כותרת">
+            <textarea id="updateBodyInput" class="field" placeholder="תוכן ההודעה"></textarea>
+            <select id="updateTypeInput" class="field"><option value="info">מידע</option><option value="schedule">שינוי לו״ז</option><option value="game">משחק</option><option value="result">תוצאה</option><option value="important">חשוב</option></select>
+            <button id="publishUpdateBtn" class="staff-btn">פרסם עדכון</button>
+            <div class="section" style="font-size:14px;margin-top:16px">נוכחות</div>
+            <select id="attendanceSession" class="field"></select>
+            <div id="attendanceList" class="attendance-list"></div>
+            <div class="staff-note">נתוני הנוכחות זמינים רק למשתמשי צוות מורשים.</div>
+          </div>
+          <div class="section">עוד</div>
           <div class="grid">
             <button class="tile" onclick="location.href='season.html'"><b>📈</b><strong>העונה שלנו</strong><span>ציר זמן ומצב עונתי</span></button>
             <button class="tile" onclick="location.href='messages.html'"><b>📢</b><strong>הודעות</strong><span>עדכונים חשובים</span></button>
@@ -118,9 +142,11 @@ body{margin:0;background:radial-gradient(circle at 50% -10%,#fff 0,#f2eff5 40%,#
   </div>
 </div>
 <script>
-const state={schedule:null,league:null,team:null,updates:[],filter:'all',view:'week',calendarDate:new Date(2026,8,1)};
+const state={schedule:null,league:null,team:null,updates:[],staff:null,attendanceSessions:[],attendanceRecords:{},filter:'all',view:'week',calendarDate:new Date(2026,8,1)};
 const SUPABASE_URL='https://yistkmkezrhuggvipqnh.supabase.co';
 const SUPABASE_KEY='sb_publishable_AmKSJPWaCc9ZFhk4OAR8Zw_yWng1qLc';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,detectSessionInUrl:true}});
+const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const heDate=d=>new Intl.DateTimeFormat('he-IL',{weekday:'long',day:'numeric',month:'numeric'}).format(new Date(d+'T12:00:00+03:00'));
 function switchTab(id){
   const titles={home:'בית',schedule:'לו״ז',games:'משחקים',team:'הקבוצה',more:'עוד'};
@@ -206,7 +232,7 @@ function openNotifications(){
   const items=state.updates.length?state.updates:[
     {update_type:'schedule',title:'מערכת שבוע 06 מסונכרנת',body:'הלו״ז נבדק מול אתר מחלקת הנוער.'}
   ];
-  notifications.innerHTML=items.map(n=>'<div class="notification"><div class="notif-icon">'+iconForUpdate(n.update_type)+'</div><div><strong>'+n.title+'</strong><span>'+n.body+'</span></div></div>').join('');
+  notifications.innerHTML=items.map(n=>'<div class="notification"><div class="notif-icon">'+iconForUpdate(n.update_type)+'</div><div><strong>'+esc(n.title)+'</strong><span>'+esc(n.body)+'</span></div></div>').join('');
   bellBadge.textContent=Math.min(items.length,9);
   sheetBackdrop.classList.add('open');
 }
@@ -225,9 +251,74 @@ async function loadUpdates(){
     bellBadge.textContent=Math.min(state.updates.length,9);
     const latest=state.updates[0];
     if(latest){
-      changeCenter.innerHTML='<div class="change-card updated"><strong>'+latest.title+'</strong><span>'+latest.body+'</span></div>';
+      changeCenter.innerHTML='<div class="change-card updated"><strong>'+esc(latest.title)+'</strong><span>'+esc(latest.body)+'</span></div>';
     }
   }catch(e){}
+}
+function roleHe(role){
+  return ({manager:'מנהל הקבוצה',coach:'מאמן',assistant:'עוזר מאמן',professional_manager:'מנהל מקצועי',staff:'צוות'})[role]||'צוות';
+}
+async function refreshStaffSession(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){state.staff=null;renderStaffState();return}
+  const {data,error}=await sb.from('staff_allowlist').select('email,role,display_name,is_active').maybeSingle();
+  if(error||!data||!data.is_active){
+    await sb.auth.signOut();state.staff=null;renderStaffState('החשבון אינו מורשה לאזור הצוות.');return;
+  }
+  state.staff=data;
+  await Promise.all([loadAttendanceSessions(),loadUpdates()]);
+  renderStaffState();
+}
+function renderStaffState(msg=''){
+  const login=document.getElementById('staffLoginCard'),dash=document.getElementById('staffDashboard'),loginMsg=document.getElementById('staffLoginMsg');
+  if(loginMsg&&msg)loginMsg.textContent=msg;
+  if(!state.staff){if(login)login.style.display='block';if(dash)dash.style.display='none';return}
+  if(login)login.style.display='none';if(dash)dash.style.display='block';
+  staffName.textContent=state.staff.display_name||'צוות';staffRole.textContent=roleHe(state.staff.role);
+  dashSessions.textContent=state.attendanceSessions.length;dashUpdates.textContent=state.updates.length;
+  attendanceSession.innerHTML=state.attendanceSessions.map(s=>'<option value="'+s.id+'">'+s.session_date.split('-').reverse().join('/')+' · '+s.start_time.slice(0,5)+' · '+esc(s.title)+' · '+esc(s.venue||'')+'</option>').join('');
+  if(state.attendanceSessions.length){loadAttendanceRecords(Number(attendanceSession.value))}
+}
+async function sendMagicLink(){
+  const email=staffEmail.value.trim();
+  if(!email){staffLoginMsg.textContent='יש להזין כתובת מייל.';return}
+  staffLoginBtn.disabled=true;staffLoginBtn.textContent='שולח…';
+  const redirect=location.origin+location.pathname;
+  const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:redirect}});
+  staffLoginBtn.disabled=false;staffLoginBtn.textContent='שלח קישור כניסה';
+  staffLoginMsg.textContent=error?'לא הצלחנו לשלוח קישור. נסה שוב.':'נשלח קישור חד־פעמי למייל. פתח אותו מאותו מכשיר.';
+}
+async function loadAttendanceSessions(){
+  const {data,error}=await sb.from('attendance_sessions').select('id,session_date,session_type,start_time,venue,title').order('session_date').order('start_time');
+  state.attendanceSessions=error?[]:(data||[]);
+}
+async function loadAttendanceRecords(sessionId){
+  if(!state.staff||!sessionId)return;
+  const {data}=await sb.from('attendance_records').select('player_name,status,note').eq('session_id',sessionId);
+  const map={};(data||[]).forEach(r=>map[r.player_name]=r.status);state.attendanceRecords[sessionId]=map;
+  attendanceList.innerHTML=(state.team?.roster||[]).map(p=>{
+    const st=map[p.name]||'';
+    return '<div class="att-row"><strong>'+esc(p.name)+'</strong><div class="att-controls">'+
+      ['present','late','absent'].map(x=>'<button class="att-btn '+(st===x?'active '+x:'')+'" data-player="'+esc(p.name)+'" data-status="'+x+'">'+({present:'נוכח',late:'איחור',absent:'נעדר'}[x])+'</button>').join('')+
+      '</div></div>';
+  }).join('');
+  attendanceList.querySelectorAll('.att-btn').forEach(b=>b.onclick=()=>saveAttendance(sessionId,b.dataset.player,b.dataset.status));
+}
+async function saveAttendance(sessionId,player,status){
+  const {data:{user}}=await sb.auth.getUser();
+  const {error}=await sb.from('attendance_records').upsert({session_id:sessionId,player_name:player,status,updated_by:user?.id||null,updated_at:new Date().toISOString()},{onConflict:'session_id,player_name'});
+  if(error){showToast('לא ניתן לשמור נוכחות');return}
+  showToast('הנוכחות נשמרה');await loadAttendanceRecords(sessionId);
+}
+async function publishStaffUpdate(){
+  const title=updateTitleInput.value.trim(),body=updateBodyInput.value.trim();
+  if(!title||!body){showToast('יש למלא כותרת ותוכן');return}
+  const {data:{user}}=await sb.auth.getUser();
+  publishUpdateBtn.disabled=true;
+  const {error}=await sb.from('team_updates').insert({title,body,update_type:updateTypeInput.value,audience:'public',is_published:true,created_by:user?.id||null});
+  publishUpdateBtn.disabled=false;
+  if(error){showToast('הפרסום נכשל');return}
+  updateTitleInput.value='';updateBodyInput.value='';showToast('העדכון פורסם');await loadUpdates();dashUpdates.textContent=state.updates.length;
 }
 async function boot(){
   try{
@@ -264,9 +355,15 @@ async function boot(){
     const staffMockBtn=document.getElementById('staffMock');if(staffMockBtn)staffMockBtn.onclick=()=>showToast('בגרסה הסופית ייפתח Login מאובטח');
     await loadUpdates();
     bindGoto();
+    staffLoginBtn.onclick=sendMagicLink;
+    staffLogoutBtn.onclick=async()=>{await sb.auth.signOut();state.staff=null;renderStaffState();showToast('התנתקת')};
+    publishUpdateBtn.onclick=publishStaffUpdate;
+    attendanceSession.onchange=()=>loadAttendanceRecords(Number(attendanceSession.value));
+    sb.auth.onAuthStateChange(()=>setTimeout(refreshStaffSession,0));
+    await refreshStaffSession();
   }catch(e){
     homeEvent.textContent='לא ניתן לטעון נתונים';
-    homeEventMeta.textContent='נסה לרענן את הפרוטוטייפ';
+    homeEventMeta.textContent='נסה לרענן את גרסת ה־Beta';
   }
 }
 function updateOnline(){offlineBanner.classList.toggle('show',!navigator.onLine)}
