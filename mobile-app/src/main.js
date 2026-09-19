@@ -3,9 +3,13 @@ import { Capacitor } from '@capacitor/core';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { Browser } from '@capacitor/browser';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { createClient } from '@supabase/supabase-js';
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
 
 const SITE='https://eazar86-eng.github.io/-Hapoel-Holon-basketball/';
-const state={tab:'home',schedule:null,league:null,team:null,error:null};
+const state={tab:'home',schedule:null,league:null,team:null,updates:[],error:null};
+const SUPABASE_URL='https://yistkmkezrhuggvipqnh.supabase.co';
+const SUPABASE_KEY='sb_publishable_AmKSJPWaCc9ZFhk4OAR8Zw_yWng1qLc';
 const app=document.getElementById('app');
 
 async function json(name){
@@ -43,7 +47,7 @@ function home(){
       <button class="action" data-open="avi-cohen.html">🕯️ אבי כהן ז״ל<small>האדם שעל שמו נקראת הקבוצה</small></button>
       <button class="action" data-open="dress-code.html">👕 קוד לבוש<small>נהלי הגעה וייצוג הקבוצה</small></button>
     </div>
-    <div class="section">מקורות חיים</div><div class="notice">הלו״ז נבדק מול אתר מחלקת הנוער, והליגה והתוצאות מול איגוד הכדורסל. האפליקציה אינה מציגה תמונות או פרטים אישיים רגישים של שחקנים.</div>
+    <div class="section">עדכונים חיים</div><div class="card"><strong>${state.updates[0]?.title||'אין עדכון חדש'}</strong><div class="muted">${state.updates[0]?.body||'המערכת מסונכרנת למקורות הרשמיים.'}</div></div><div class="section">מקורות חיים</div><div class="notice">הלו״ז נבדק מול אתר מחלקת הנוער, והליגה והתוצאות מול איגוד הכדורסל. האפליקציה אינה מציגה תמונות או פרטים אישיים רגישים של שחקנים.</div>
     <div class="source">לו״ז: סנכרון ${state.schedule?.syncedAt||'–'} · ליגה: סנכרון ${state.league?.syncedAt||'–'}</div>
   </main>`;
 }
@@ -91,9 +95,13 @@ function bind(){
   document.querySelectorAll('[data-external]').forEach(el=>el.onclick=()=>{tap();Browser.open({url:el.dataset.external})});
   const rem=document.getElementById('weekReminder');if(rem)rem.onclick=async()=>{const e=nextEvent();if(!e)return;const p=await LocalNotifications.requestPermissions();if(p.display!=='granted')return;const when=new Date(e.date+'T'+e.start+':00+03:00');when.setHours(when.getHours()-2);if(when<=new Date())return;await LocalNotifications.schedule({notifications:[{id:6001,title:'הפועל ״אבי״ חולון',body:'בעוד שעתיים: '+e.type+' · '+e.start+' · '+e.place,schedule:{at:when},sound:'default'}]});rem.textContent='✓ תזכורת נקבעה';};
 }
+async function loadUpdates(){
+  const {data,error}=await supabase.from('team_updates').select('id,title,body,update_type,related_date,created_at').eq('audience','public').eq('is_published',true).order('created_at',{ascending:false}).limit(10);
+  if(!error&&data)state.updates=data;
+}
 async function boot(){
   app.innerHTML=top()+'<div class="loading">טוען את נתוני הקבוצה…</div>'+nav();
-  try{[state.schedule,state.league,state.team]=await Promise.all([json('schedule-data.json'),json('league-data.json'),json('team-data.json')]);}catch(e){state.error=e}
+  try{[state.schedule,state.league,state.team]=await Promise.all([json('schedule-data.json'),json('league-data.json'),json('team-data.json')]);await loadUpdates();}catch(e){state.error=e}
   render();
 }
 boot();
