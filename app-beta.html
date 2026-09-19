@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#35185f">
+<title>Beta | אבי חולון</title>
+<style>
+:root{--p:#35185f;--p2:#623ba0;--y:#f2c433;--bg:#ebe8ef;--card:#fff;--ink:#21172f;--muted:#746d80;--line:rgba(53,24,95,.11);--green:#1d8d61}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#fff 0,#f2eff5 40%,#ded9e5 100%);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:var(--ink)}
+.stage{min-height:100vh;padding:26px 12px 40px;display:flex;flex-direction:column;align-items:center}
+.caption{max-width:430px;width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:#5c5468;font-size:12px;font-weight:800}
+.live{display:inline-flex;align-items:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%;background:#39c880;box-shadow:0 0 0 4px rgba(57,200,128,.12)}
+.phone{width:min(100%,430px);height:min(860px,calc(100vh - 80px));min-height:690px;background:var(--bg);border-radius:42px;border:9px solid #17141a;box-shadow:0 26px 70px rgba(25,16,36,.28),inset 0 0 0 1px rgba(255,255,255,.2);overflow:hidden;position:relative}
+.island{position:absolute;z-index:50;top:9px;left:50%;transform:translateX(-50%);width:112px;height:29px;background:#09080a;border-radius:18px}
+.app{height:100%;overflow:hidden;display:flex;flex-direction:column}
+.top{background:radial-gradient(circle at 15% 0,#7b55ac 0,transparent 34%),linear-gradient(145deg,#211039,var(--p2));color:#fff;padding:48px 18px 15px}.topmeta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:10px;font-weight:850;opacity:.92}.topmeta .status{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.1);padding:5px 8px;border-radius:999px}
+.brand{display:flex;gap:12px;align-items:center}.brand img{width:54px;height:54px;background:#fff;border-radius:15px;padding:4px;object-fit:contain}.brand small{display:block;color:var(--y);font-size:11px;font-weight:950}.brand strong{display:block;font-size:21px;margin-top:2px}
+.content{flex:1;overflow:auto;padding:14px 14px 90px;scrollbar-width:none}.content::-webkit-scrollbar{display:none}
+.hero{background:linear-gradient(145deg,#2a124a,#513084);color:#fff;border-radius:21px;padding:17px;box-shadow:0 11px 24px rgba(53,24,95,.15);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(242,196,51,.08);left:-50px;top:-55px}.hero-actions{display:flex;gap:7px;margin-top:12px;position:relative;z-index:2}.hero-btn{border:0;border-radius:11px;padding:9px 11px;font-size:10px;font-weight:950}.hero-btn.primary{background:var(--y);color:#3f2d00}.hero-btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.16)}.eyebrow{color:var(--y);font-size:10px;font-weight:950}.hero h2{margin:6px 0;font-size:23px}.hero p{font-size:12px;line-height:1.6;margin:0;opacity:.9}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.kpi{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px;text-align:center}.kpi strong{display:block;color:var(--p);font-size:21px}.kpi span{font-size:9px;color:var(--muted);font-weight:850}
+.section{font-size:18px;font-weight:950;color:var(--p);margin:18px 2px 9px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tile,.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 4px 14px rgba(53,24,95,.035)}.tile{min-height:92px;border:1px solid var(--line);text-align:right;color:var(--p)}.tile b{display:block;font-size:22px;margin-bottom:9px}.tile strong{font-size:14px}.tile span{display:block;color:var(--muted);font-size:10px;line-height:1.35;margin-top:3px}
+.card{margin:8px 0;transition:transform .15s ease,box-shadow .15s ease}.card:active,.tile:active{transform:scale(.985)}.row{display:flex;gap:11px;align-items:flex-start}.gamecard{background:linear-gradient(135deg,#fff,#fff8dc);border-color:#e2c75e}.gamecard .scoreline{font-size:17px;color:var(--p);font-weight:950;margin:5px 0}.game-actions{display:flex;gap:6px;margin-top:10px}.mini-btn{border:0;border-radius:10px;padding:8px 10px;background:#eee8f8;color:var(--p);font-size:10px;font-weight:950}.mini-btn.gold{background:var(--y);color:#493900}.seg{display:flex;gap:6px;overflow:auto;margin:4px 0 10px;padding-bottom:2px}.seg button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900}.seg button.active{background:var(--p);color:#fff;border-color:var(--p)}.dayhead{display:flex;align-items:center;justify-content:space-between;margin:14px 2px 5px;color:var(--p);font-weight:950;font-size:13px}.dayhead span{font-size:9px;color:var(--muted)}.time{direction:ltr;min-width:48px;color:var(--p);font-weight:950}.row strong{display:block;color:var(--p);font-size:14px}.row span{display:block;color:var(--muted);font-size:11px;line-height:1.45;margin-top:2px}
+.notice{background:#fff7d2;border:1px solid #ddbe46;color:#62500e;border-radius:15px;padding:12px;font-size:11px;font-weight:800;line-height:1.55}
+.pill{display:inline-block;border-radius:999px;background:#eee8f8;color:var(--p);font-size:9px;font-weight:950;padding:4px 7px}
+.tabbar{position:absolute;z-index:40;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid #ddd;display:grid;grid-template-columns:repeat(5,1fr);padding:7px 6px 11px}.tab{border:0;background:none;color:#81788c;font-size:9px;font-weight:850}.tab i{display:block;font-style:normal;font-size:20px;line-height:1.2}.tab.active{color:var(--p)}
+.screen{display:none}.screen.active{display:block}
+.badge{font-size:9px;font-weight:950;padding:4px 7px;border-radius:999px;background:#f1ebf8;color:var(--p)}.source{font-size:9px;color:var(--muted);text-align:center;line-height:1.45;margin:16px 0}.update-card{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px}.update-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#eee8f8;font-size:17px}.update-card strong{display:block;color:var(--p);font-size:12px}.update-card span{display:block;color:var(--muted);font-size:10px;line-height:1.45;margin-top:2px}.roster-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.roster-grid .card{margin:0}.number{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#f0eaf8;color:var(--p);font-weight:950;margin-left:8px}
+.privacy{font-size:10px;color:var(--muted);font-weight:750;line-height:1.5}
+@media(max-width:460px){.stage{padding:0}.caption{display:none}.phone{width:100%;height:100vh;min-height:0;border:0;border-radius:0}.island{display:none}.top{padding-top:calc(17px + env(safe-area-inset-top))}}
+
+.screen{animation:screenIn .22s ease both}@keyframes screenIn{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+.appbar{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.screen-title{font-size:11px;font-weight:900;opacity:.9}.bell{position:relative;width:36px;height:36px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;border-radius:12px;font-size:17px}.bell-badge{position:absolute;top:-4px;left:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--y);color:#3d2d00;font-size:9px;font-weight:950;display:grid;place-items:center;border:2px solid #4f2b7d}
+.monthbar{display:flex;align-items:center;justify-content:space-between;margin:5px 0 10px}.monthbar strong{color:var(--p);font-size:16px}.monthnav{border:0;background:#fff;border:1px solid var(--line);border-radius:10px;width:34px;height:34px;color:var(--p);font-weight:950}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.dow{text-align:center;color:var(--muted);font-size:9px;font-weight:900;padding:4px 0}.day{aspect-ratio:1;border:1px solid var(--line);border-radius:11px;background:#fff;position:relative;display:flex;align-items:flex-start;justify-content:flex-end;padding:6px;color:var(--muted);font-size:10px;font-weight:800}.day.mutedday{opacity:.35}.day.today{border:2px solid var(--p);color:var(--p)}.day.has-event{background:#faf7ff}.event-dot{position:absolute;bottom:6px;right:50%;transform:translateX(50%);display:flex;gap:2px}.event-dot i{width:5px;height:5px;border-radius:50%;background:var(--p)}.event-dot i.game{background:var(--y)}
+.center-title{display:flex;justify-content:space-between;align-items:center}.center-title span{font-size:10px;color:var(--muted);font-weight:800}
+.change{display:flex;gap:10px;align-items:flex-start}.change-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#f1ebf8}.change strong{display:block;color:var(--p);font-size:12px}.change span{display:block;color:var(--muted);font-size:10px;line-height:1.45;margin-top:2px}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(16,10,22,.42);z-index:80;display:none;align-items:flex-end}.sheet-backdrop.open{display:flex}.sheet{width:100%;max-height:78%;overflow:auto;background:#f8f6fa;border-radius:25px 25px 0 0;padding:10px 14px 24px;box-shadow:0 -18px 50px rgba(25,16,36,.25);animation:sheetUp .22s ease}.sheet-handle{width:42px;height:5px;border-radius:999px;background:#c7c1cc;margin:2px auto 13px}@keyframes sheetUp{from{transform:translateY(30%);opacity:.3}to{transform:none;opacity:1}}
+.notification{display:flex;gap:10px;padding:12px 4px;border-bottom:1px solid var(--line)}.notification:last-child{border-bottom:0}.notif-icon{width:38px;height:38px;border-radius:12px;background:#eee8f8;display:grid;place-items:center}.notification strong{display:block;color:var(--p);font-size:12px}.notification span{display:block;color:var(--muted);font-size:10px;line-height:1.45;margin-top:2px}
+.gamehero{background:linear-gradient(145deg,#2a124a,#5a318b);color:#fff;border-radius:22px;padding:17px}.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:9px;margin:14px 0}.teamblock{text-align:center}.teamlogo{width:58px;height:58px;border-radius:17px;background:#fff;display:grid;place-items:center;margin:auto;color:var(--p);font-size:24px;font-weight:950}.teamblock strong{display:block;margin-top:7px;font-size:11px}.vs{font-size:12px;color:var(--y);font-weight:950}.gameinfo{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.gameinfo div{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:9px}.gameinfo b{display:block;font-size:9px;color:var(--y)}.gameinfo span{font-size:11px;font-weight:850}
+.nativehint{font-size:9px;color:var(--muted);text-align:center;margin:10px 0}
+
+.today-strip{display:flex;gap:8px;overflow:auto;margin:10px 0 2px;padding-bottom:2px}.today-chip{min-width:72px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px;text-align:center}.today-chip.active{background:var(--p);color:#fff}.today-chip b{display:block;font-size:16px}.today-chip span{font-size:9px;font-weight:850;opacity:.75}
+.change-center{display:grid;gap:8px}.change-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.change-card strong{display:block;color:var(--p);font-size:12px}.change-card span{display:block;color:var(--muted);font-size:10px;line-height:1.45;margin-top:3px}.change-card.updated{border-right:5px solid var(--y)}
+.push-preview{background:#f7f5f9;border-radius:20px;padding:14px;border:1px solid var(--line)}.iphone-notif{background:rgba(255,255,255,.94);border:1px solid #ddd;border-radius:17px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.08)}.notif-top{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted);font-weight:800}.notif-app{width:26px;height:26px;border-radius:8px;background:var(--p);color:#fff;display:grid;place-items:center;font-size:12px}.iphone-notif strong{display:block;margin-top:7px;color:var(--ink);font-size:12px}.iphone-notif p{margin:3px 0 0;font-size:11px;line-height:1.4;color:#4d4656}
+.staff-lock{background:linear-gradient(145deg,#fff,#f5f1fa);border:1px solid var(--line);border-radius:18px;padding:15px}.lockicon{width:48px;height:48px;border-radius:15px;background:#eee8f8;display:grid;place-items:center;font-size:23px;margin-bottom:10px}.staff-lock strong{display:block;color:var(--p)}.staff-lock p{font-size:11px;color:var(--muted);line-height:1.5}.fake-field{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;color:#777;margin-top:8px;text-align:right}.full-btn{width:100%;border:0;border-radius:12px;padding:11px;background:var(--p);color:#fff;font-weight:950;margin-top:8px}
+.offline-banner{display:none;background:#fff1c7;color:#6b5600;border:1px solid #e2c25a;border-radius:12px;padding:9px 11px;font-size:10px;font-weight:900;margin:0 0 10px}.offline-banner.show{display:block}
+.toast{position:absolute;z-index:100;left:50%;bottom:92px;transform:translate(-50%,20px);background:#21172f;color:#fff;border-radius:999px;padding:9px 14px;font-size:10px;font-weight:900;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="caption"><span>Beta v0.6</span><span class="live"><span class="dot"></span>נתונים חיים מהאתר</span></div>
+  <div class="phone">
+    <div class="island"></div>
+    <div class="app">
+      <header class="top">
+        <div class="brand">
+          <img src="youth-logo.svg" alt="סמל הפועל חולון נוער">
+          <div><small>הפועל חולון נוער</small><strong>הפועל ״אבי״ חולון</strong></div>
+        </div><div class="appbar"><div><div class="screen-title" id="screenTitle">בית</div><div class="topmeta" style="margin-top:4px"><span id="topWeek">עונת 2026–2027</span><span class="status"><span class="dot"></span>מסונכרן</span></div></div><button class="bell" id="bellBtn" aria-label="מרכז עדכונים">🔔<span class="bell-badge" id="bellBadge">2</span></button></div>
+      </header>
+      <div class="content"><div class="offline-banner" id="offlineBanner">מצב Offline · מוצגים הנתונים האחרונים שנשמרו</div>
+        <section class="screen active" data-screen="home">
+          <div class="hero"><div class="eyebrow">הפעילות הקרובה</div><h2 id="homeEvent">טוען…</h2><p id="homeEventMeta"></p><div class="hero-actions"><button class="hero-btn primary goto" data-go="schedule">ללו״ז השבועי</button><button class="hero-btn ghost" id="quickReminder">🔔 תזכורת</button></div></div>
+          <div class="kpis"><div class="kpi"><strong id="weekKpi">–</strong><span>שבוע</span></div><div class="kpi"><strong id="gamesKpi">0</strong><span>משחקי ליגה</span></div><div class="kpi"><strong id="pointsKpi">0</strong><span>נקודות</span></div></div>
+          <div class="section">היום והשבוע</div><div class="today-strip" id="todayStrip"></div><div class="section">המשחק הקרוב</div><div class="card gamecard"><span class="pill">משחק אימון · חוץ</span><div class="scoreline">הפועל ״אבי״ חולון · רמה״ש</div><div class="privacy">חמישי 24/09 · יציאה 15:30 · משחק 17:00–19:00</div><div class="game-actions"><button class="mini-btn gold" id="addGameCalendar">＋ ליומן</button><button class="mini-btn goto" data-go="games">פרטי משחק</button></div></div><div class="section">גישה מהירה</div>
+          <div class="grid">
+            <button class="tile goto" data-go="schedule"><b>📅</b><strong>השבוע שלי</strong><span>האימונים והמשחקים הקרובים</span></button>
+            <button class="tile goto" data-go="games"><b>🏆</b><strong>משחקים וטבלה</strong><span>מידע רשמי מהאיגוד</span></button>
+            <button class="tile" onclick="location.href='avi-cohen.html'"><b>🕯️</b><strong>אבי כהן ז״ל</strong><span>האדם שעל שמו נקראת הקבוצה</span></button>
+            <button class="tile" onclick="location.href='dress-code.html'"><b>👕</b><strong>קוד לבוש</strong><span>נהלי הגעה וייצוג</span></button>
+          </div>
+          <div class="section">מה השתנה?</div><div class="change-center" id="changeCenter"><div class="change-card updated"><strong>מעקב לו״ז פעיל</strong><span>כל שינוי רשמי במערכת הקבוצה יופיע כאן.</span></div><div class="change-card"><strong>אין שינוי חדש</strong><span>המערכת הנוכחית תואמת למידע האחרון שנשמר.</span></div></div><div class="section">עדכון אחרון</div><div class="update-card"><div class="update-icon">↻</div><div><strong>המערכת מסונכרנת למקורות הרשמיים</strong><span id="updateStatus">טוען זמני סנכרון…</span></div></div><div class="section">Beta</div><div class="notice">גרסת Beta: מסכי הציבור מחוברים לנתוני הקבוצה החיים. אזור הצוות יופעל לאחר הוספת כתובות המייל המורשות.</div><div class="section">פרטיות</div>
+          <div class="notice">האפליקציה בנויה ללא תמונות שחקנים וללא פרטים אישיים רגישים של קטינים. הלו״ז נבדק מול אתר מחלקת הנוער והליגה מול איגוד הכדורסל.</div>
+          <div class="source" id="syncInfo"></div>
+        </section>
+        <section class="screen" data-screen="schedule">
+          <div class="center-title"><div class="section" id="weekTitle">לו״ז שבועי</div><span>תצוגה</span></div><div class="seg" id="viewMode"><button class="active" data-view="week">שבוע</button><button data-view="month">חודש</button></div><div id="calendarWrap" style="display:none"><div class="monthbar"><button class="monthnav" id="prevMonth">‹</button><strong id="monthLabel"></strong><button class="monthnav" id="nextMonth">›</button></div><div class="calendar" id="calendar"></div></div><div class="seg" id="scheduleFilters"><button class="active" data-filter="all">הכול</button><button data-filter="today">היום</button><button data-filter="basketball">כדורסל</button><button data-filter="gym">חדר כושר</button><button data-filter="game">משחקים</button></div>
+          <div id="scheduleList"></div>
+          <div class="source">מקור: אתר הפועל חולון נוער</div>
+        </section>
+        <section class="screen" data-screen="games">
+          <div class="kpis"><div class="kpi"><strong id="gp">0</strong><span>משחקים</span></div><div class="kpi"><strong id="wins">0</strong><span>ניצחונות</span></div><div class="kpi"><strong id="pts">0</strong><span>נקודות</span></div></div>
+          <div class="section">משחקים רשמיים</div><div id="fixtures"></div>
+          <div class="section">תוצאות</div><div id="results"></div>
+          <div class="section">מרכז משחק</div><div class="gamehero"><span class="pill" style="background:rgba(255,255,255,.14);color:#fff">משחק אימון · חוץ</span><div class="teams"><div class="teamblock"><div class="teamlogo"><img src="youth-logo.svg" alt="" style="width:48px;height:48px;object-fit:contain"></div><strong>הפועל ״אבי״ חולון</strong></div><div class="vs">VS</div><div class="teamblock"><div class="teamlogo">ר״ש</div><strong>רמת השרון</strong></div></div><div class="gameinfo"><div><b>תאריך</b><span>חמישי · 24/09</span></div><div><b>שעת משחק</b><span>17:00–19:00</span></div><div><b>יציאה</b><span>15:30 · הפחים</span></div><div><b>מיקום</b><span>רמת השרון</span></div></div><div class="game-actions"><button class="mini-btn gold" id="addGameCalendar2">＋ הוסף ליומן</button><button class="mini-btn" id="gameReminder">🔔 תזכורת</button></div></div>
+        </section>
+        <section class="screen" data-screen="team">
+          <div class="section">סגל הקבוצה</div><div id="roster" class="roster-grid"></div>
+          <div class="section">צוות מקצועי</div><div id="staff"></div>
+          <div class="notice">הסגל הציבורי מוצג ללא תמונות, מספרי טלפון, כתובות דוא״ל או מידע אישי רגיש.</div>
+        </section>
+        <section class="screen" data-screen="more">
+          <div class="section">מרכז האפליקציה</div><div class="grid"><button class="tile" id="openNotifications"><b>🔔</b><strong>מרכז עדכונים</strong><span>שינויים, הודעות ותזכורות</span></button><button class="tile goto" data-go="schedule"><b>🗓️</b><strong>לוח חודשי</strong><span>כל הפעילויות במקום אחד</span></button></div><div class="section">עוד</div>
+          <div class="grid">
+            <button class="tile" onclick="location.href='season.html'"><b>📈</b><strong>העונה שלנו</strong><span>ציר זמן ומצב עונתי</span></button>
+            <button class="tile" onclick="location.href='messages.html'"><b>📢</b><strong>הודעות</strong><span>עדכונים חשובים</span></button>
+            <button class="tile" onclick="location.href='birthdays.html'"><b>🎂</b><strong>ימי הולדת</strong><span>יום וחודש בלבד</span></button>
+            <button class="tile" onclick="location.href='avi-cohen.html'"><b>🕯️</b><strong>אבי כהן ז״ל</strong><span>עמוד ההנצחה</span></button>
+            <button class="tile" onclick="location.href='app-privacy.html'"><b>🔒</b><strong>פרטיות</strong><span>מדיניות האפליקציה</span></button>
+            <button class="tile" onclick="location.href='app-support.html'"><b>❓</b><strong>תמיכה</strong><span>מידע ויצירת קשר</span></button>
+          </div>
+        </section>
+      </div>
+      <div class="sheet-backdrop" id="sheetBackdrop"><div class="sheet"><div class="sheet-handle"></div><div class="center-title"><div class="section" style="margin:0 0 10px">מרכז עדכונים</div><span id="clearUpdates">סמן כנקרא</span></div><div id="notifications"></div></div></div>
+      <div class="toast" id="toast"></div>
+      <nav class="tabbar">
+        <button class="tab active" data-tab="home"><i>⌂</i>בית</button>
+        <button class="tab" data-tab="schedule"><i>▦</i>לו״ז</button>
+        <button class="tab" data-tab="games"><i>🏀</i>משחקים</button>
+        <button class="tab" data-tab="team"><i>👥</i>קבוצה</button>
+        <button class="tab" data-tab="more"><i>•••</i>עוד</button>
+      </nav>
+    </div>
+  </div>
+</div>
+<script>
+const state={schedule:null,league:null,team:null,updates:[],filter:'all',view:'week',calendarDate:new Date(2026,8,1)};
+const SUPABASE_URL='https://yistkmkezrhuggvipqnh.supabase.co';
+const SUPABASE_KEY='sb_publishable_AmKSJPWaCc9ZFhk4OAR8Zw_yWng1qLc';
+const heDate=d=>new Intl.DateTimeFormat('he-IL',{weekday:'long',day:'numeric',month:'numeric'}).format(new Date(d+'T12:00:00+03:00'));
+function switchTab(id){
+  const titles={home:'בית',schedule:'לו״ז',games:'משחקים',team:'הקבוצה',more:'עוד'};
+  document.getElementById('screenTitle').textContent=titles[id]||'אבי חולון';
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.dataset.screen===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));
+  document.querySelector('.content').scrollTo({top:0,behavior:'smooth'});
+  if(id==='schedule'&&state.view==='month')renderCalendar();
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>switchTab(t.dataset.tab));
+function bindGoto(){document.querySelectorAll('.goto').forEach(t=>t.onclick=()=>switchTab(t.dataset.go))}
+bindGoto();
+function todayISO(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jerusalem',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>toast.classList.remove('show'),1800)}
+function renderTodayStrip(){
+  if(!state.schedule)return;
+  const days=['א','ב','ג','ד','ה','ו','ש'];
+  const start=new Date(state.schedule.start+'T12:00:00+03:00');
+  let html='';
+  for(let i=0;i<7;i++){
+    const d=new Date(start);d.setDate(start.getDate()+i);
+    const iso=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jerusalem',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+    const count=state.schedule.events.filter(e=>e.date===iso).length;
+    html+='<div class="today-chip '+(iso===todayISO()?'active':'')+'" data-date="'+iso+'"><span>יום '+days[d.getDay()]+'</span><b>'+d.getDate()+'</b><span>'+(count?count+' פעילויות':'פנוי')+'</span></div>';
+  }
+  todayStrip.innerHTML=html;
+  todayStrip.querySelectorAll('.today-chip').forEach(el=>el.onclick=()=>{switchTab('schedule');renderSchedule('all');showToast('נפתח הלו״ז השבועי')});
+}
+function downloadICS(){
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Avi Holon//Team App//HE','BEGIN:VEVENT','UID:avi-holon-ramat-hasharon-20260924','DTSTART:20260924T140000Z','DTEND:20260924T160000Z','SUMMARY:הפועל אבי חולון - רמה״ש','DESCRIPTION:משחק אימון. יציאה מהפחים 15:30','LOCATION:רמת השרון','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='avi-holon-2026-09-24.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)
+}
+function renderSchedule(filter='all'){
+  if(!state.schedule)return;
+  state.filter=filter;
+  document.querySelectorAll('#scheduleFilters button').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+  const iso=todayISO();
+  let ev=state.schedule.events.filter(e=>{
+    if(filter==='today')return e.date===iso;
+    if(filter==='basketball')return e.type==='כדורסל';
+    if(filter==='gym')return e.type==='חדר כושר';
+    if(filter==='game')return e.type.includes('משחק');
+    return true;
+  });
+  if(!ev.length){scheduleList.innerHTML='<div class="card privacy">אין פעילויות להצגה במסנן הזה.</div>';return}
+  const groups={};ev.forEach(e=>(groups[e.date]??=[]).push(e));
+  scheduleList.innerHTML=Object.entries(groups).map(([date,items])=>'<div class="dayhead">'+heDate(date)+'<span>'+date.split('-').reverse().join('/')+'</span></div>'+items.map(e=>'<div class="card row '+(e.type.includes('משחק')?'gamecard':'')+'"><div class="time">'+e.start+'</div><div><strong>'+e.type+'</strong><span>'+e.end+' · '+e.place+(e.note?'<br><b>'+e.note+'</b>':'')+'</span></div></div>').join('')).join('');
+}
+function renderCalendar(){
+  if(!state.schedule)return;
+  const d=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth(),1);
+  const y=d.getFullYear(),m=d.getMonth();
+  const monthNames=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  monthLabel.textContent=monthNames[m]+' '+y;
+  const first=(d.getDay()+6)%7;
+  const days=new Date(y,m+1,0).getDate();
+  const prevDays=new Date(y,m,0).getDate();
+  const cells=[];
+  ['א','ב','ג','ד','ה','ו','ש'].forEach(x=>cells.push('<div class="dow">'+x+'</div>'));
+  for(let i=0;i<42;i++){
+    let day=i-first+1,dm=m,dy=y,muted='';
+    if(day<1){day=prevDays+day;dm=m-1;if(dm<0){dm=11;dy--}muted=' mutedday'}
+    else if(day>days){day-=days;dm=m+1;if(dm>11){dm=0;dy++}muted=' mutedday'}
+    const iso=dy+'-'+String(dm+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    const ev=state.schedule.events.filter(e=>e.date===iso);
+    const today=iso===todayISO()?' today':'';
+    const has=ev.length?' has-event':'';
+    const dots=ev.length?'<div class="event-dot">'+ev.slice(0,3).map(e=>'<i class="'+(e.type.includes('משחק')?'game':'')+'"></i>').join('')+'</div>':'';
+    cells.push('<div class="day'+muted+today+has+'" data-date="'+iso+'">'+day+dots+'</div>');
+  }
+  calendar.innerHTML=cells.join('');
+  calendar.querySelectorAll('.day.has-event').forEach(el=>el.onclick=()=>{state.filter='all';state.view='week';document.querySelectorAll('#viewMode button').forEach(b=>b.classList.toggle('active',b.dataset.view==='week'));calendarWrap.style.display='none';scheduleFilters.style.display='flex';scheduleList.style.display='block';renderSchedule('all');const first=state.schedule.events.findIndex(e=>e.date===el.dataset.date);if(first>=0){const cards=scheduleList.querySelectorAll('.card');cards[Math.min(first,cards.length-1)]?.scrollIntoView({behavior:'smooth',block:'center'})}});
+}
+function setView(view){
+  state.view=view;
+  document.querySelectorAll('#viewMode button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  const month=view==='month';
+  calendarWrap.style.display=month?'block':'none';scheduleFilters.style.display=month?'none':'flex';scheduleList.style.display=month?'none':'block';
+  if(month)renderCalendar();
+}
+function iconForUpdate(t){return t==='schedule'?'↻':t==='game'?'🏀':t==='result'?'🏆':t==='important'?'!':'ℹ️'}
+function openNotifications(){
+  const items=state.updates.length?state.updates:[
+    {update_type:'schedule',title:'מערכת שבוע 06 מסונכרנת',body:'הלו״ז נבדק מול אתר מחלקת הנוער.'}
+  ];
+  notifications.innerHTML=items.map(n=>'<div class="notification"><div class="notif-icon">'+iconForUpdate(n.update_type)+'</div><div><strong>'+n.title+'</strong><span>'+n.body+'</span></div></div>').join('');
+  bellBadge.textContent=Math.min(items.length,9);
+  sheetBackdrop.classList.add('open');
+}
+function nextEvent(){
+  if(!state.schedule)return null;
+  const now=new Date();
+  return state.schedule.events.map(e=>({...e,dt:new Date(e.date+'T'+e.start+':00+03:00')})).find(e=>e.dt>=now)||null;
+}
+async function loadUpdates(){
+  try{
+    const r=await fetch(SUPABASE_URL+'/rest/v1/team_updates?select=id,title,body,update_type,related_date,created_at&audience=eq.public&is_published=eq.true&order=created_at.desc&limit=10',{
+      headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}
+    });
+    if(!r.ok)throw new Error('updates');
+    state.updates=await r.json();
+    bellBadge.textContent=Math.min(state.updates.length,9);
+    const latest=state.updates[0];
+    if(latest){
+      changeCenter.innerHTML='<div class="change-card updated"><strong>'+latest.title+'</strong><span>'+latest.body+'</span></div>';
+    }
+  }catch(e){}
+}
+async function boot(){
+  try{
+    [state.schedule,state.league,state.team]=await Promise.all([
+      fetch('schedule-data.json',{cache:'no-store'}).then(r=>r.json()),
+      fetch('league-data.json',{cache:'no-store'}).then(r=>r.json()),
+      fetch('team-data.json',{cache:'no-store'}).then(r=>r.json())
+    ]);
+    const e=nextEvent();
+    homeEvent.textContent=e?e.type:'אין פעילות קרובה';
+    homeEventMeta.textContent=e?heDate(e.date)+' · '+e.start+'–'+e.end+' · '+e.place+(e.note?' · '+e.note:''):'הלו״ז הבא יופיע אוטומטית';
+    weekKpi.textContent=state.schedule.week;
+    const ours=state.league.table.find(x=>x.team===state.league.teamName)||{};
+    gamesKpi.textContent=ours.gp||0; pointsKpi.textContent=ours.pts||0;
+    gp.textContent=ours.gp||0; wins.textContent=ours.w||0; pts.textContent=ours.pts||0;
+    syncInfo.textContent='לו״ז עודכן: '+state.schedule.syncedAt.split('-').reverse().join('/')+' · ליגה עודכנה: '+state.league.syncedAt.split('-').reverse().join('/');updateStatus.textContent='לו״ז: '+state.schedule.syncedAt.split('-').reverse().join('/')+' · איגוד: '+state.league.syncedAt.split('-').reverse().join('/');
+    weekTitle.textContent='שבוע '+state.schedule.week+' · '+state.schedule.start.split('-').reverse().join('/')+'–'+state.schedule.end.split('-').reverse().join('/');topWeek.textContent='שבוע '+state.schedule.week+' · עונת 2026–2027';renderSchedule('all');renderTodayStrip();
+    fixtures.innerHTML=state.league.officialFixtures.length?state.league.officialFixtures.map(g=>'<div class="card"><strong>'+g.home+' · '+g.away+'</strong><div class="privacy">'+g.date+' · '+(g.time||'')+'</div></div>').join(''):'<div class="card privacy">איגוד הכדורסל עדיין לא פרסם משחקים רשמיים.</div>';
+    results.innerHTML=state.league.results.length?state.league.results.map(g=>'<div class="card"><strong>'+g.home+' '+g.homeScore+' : '+g.awayScore+' '+g.away+'</strong><div class="privacy">'+g.date+'</div></div>').join(''):'<div class="card privacy">עדיין אין תוצאות רשמיות.</div>';
+    roster.innerHTML=state.team.roster.map(p=>'<div class="card"><span class="number">'+p.number+'</span><strong>'+p.name+'</strong></div>').join('');
+    staff.innerHTML=state.team.staff.map(s=>'<div class="card"><strong>'+s.name+'</strong><div class="privacy">'+s.role+'</div></div>').join('');
+    document.querySelectorAll('#scheduleFilters button').forEach(b=>b.onclick=()=>renderSchedule(b.dataset.filter));
+    document.getElementById('addGameCalendar').onclick=downloadICS;
+    document.getElementById('addGameCalendar2').onclick=downloadICS;
+    document.getElementById('quickReminder').onclick=()=>{document.getElementById('quickReminder').textContent='✓ תזכורת תופעל באפליקציה';document.getElementById('quickReminder').disabled=true};
+    document.getElementById('gameReminder').onclick=()=>{document.getElementById('gameReminder').textContent='✓ תזכורת נקבעה'};
+    document.querySelectorAll('#viewMode button').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+    prevMonth.onclick=()=>{state.calendarDate=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth()-1,1);renderCalendar()};
+    nextMonth.onclick=()=>{state.calendarDate=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth()+1,1);renderCalendar()};
+    bellBtn.onclick=openNotifications;openNotifications.onclick=openNotifications;
+    sheetBackdrop.onclick=e=>{if(e.target===sheetBackdrop)sheetBackdrop.classList.remove('open')};
+    clearUpdates.onclick=()=>{bellBadge.style.display='none';sheetBackdrop.classList.remove('open')};
+    document.getElementById('openNotifications').onclick=openNotifications;
+    document.getElementById('staffMock').onclick=()=>showToast('בגרסה הסופית ייפתח Login מאובטח');
+    await loadUpdates();
+    bindGoto();
+  }catch(e){
+    homeEvent.textContent='לא ניתן לטעון נתונים';
+    homeEventMeta.textContent='נסה לרענן את הפרוטוטייפ';
+  }
+}
+function updateOnline(){offlineBanner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',()=>{updateOnline();showToast('חזרת לרשת')});
+window.addEventListener('offline',()=>{updateOnline();showToast('עברת למצב Offline')});
+updateOnline();
+boot();
+</script>
+</body>
+</html>
