@@ -250,18 +250,18 @@ async function boot(){
     roster.innerHTML=state.team.roster.map(p=>'<div class="card"><span class="number">'+p.number+'</span><strong>'+p.name+'</strong></div>').join('');
     staff.innerHTML=state.team.staff.map(s=>'<div class="card"><strong>'+s.name+'</strong><div class="privacy">'+s.role+'</div></div>').join('');
     document.querySelectorAll('#scheduleFilters button').forEach(b=>b.onclick=()=>renderSchedule(b.dataset.filter));
-    document.getElementById('addGameCalendar').onclick=downloadICS;
-    document.getElementById('addGameCalendar2').onclick=downloadICS;
-    document.getElementById('quickReminder').onclick=()=>{document.getElementById('quickReminder').textContent='✓ תזכורת תופעל באפליקציה';document.getElementById('quickReminder').disabled=true};
-    document.getElementById('gameReminder').onclick=()=>{document.getElementById('gameReminder').textContent='✓ תזכורת נקבעה'};
+    const addGameCalendarBtn=document.getElementById('addGameCalendar');if(addGameCalendarBtn)addGameCalendarBtn.onclick=downloadICS;
+    const addGameCalendarBtn2=document.getElementById('addGameCalendar2');if(addGameCalendarBtn2)addGameCalendarBtn2.onclick=downloadICS;
+    const quickReminderBtn=document.getElementById('quickReminder');if(quickReminderBtn)quickReminderBtn.onclick=()=>{quickReminderBtn.textContent='✓ תזכורת תופעל באפליקציה';quickReminderBtn.disabled=true};
+    const gameReminderBtn=document.getElementById('gameReminder');if(gameReminderBtn)gameReminderBtn.onclick=()=>{gameReminderBtn.textContent='✓ תזכורת נקבעה'};
     document.querySelectorAll('#viewMode button').forEach(b=>b.onclick=()=>setView(b.dataset.view));
     prevMonth.onclick=()=>{state.calendarDate=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth()-1,1);renderCalendar()};
     nextMonth.onclick=()=>{state.calendarDate=new Date(state.calendarDate.getFullYear(),state.calendarDate.getMonth()+1,1);renderCalendar()};
-    bellBtn.onclick=openNotifications;openNotifications.onclick=openNotifications;
+    document.getElementById('bellBtn').onclick=openNotifications;
     sheetBackdrop.onclick=e=>{if(e.target===sheetBackdrop)sheetBackdrop.classList.remove('open')};
     clearUpdates.onclick=()=>{bellBadge.style.display='none';sheetBackdrop.classList.remove('open')};
-    document.getElementById('openNotifications').onclick=openNotifications;
-    document.getElementById('staffMock').onclick=()=>showToast('בגרסה הסופית ייפתח Login מאובטח');
+    const openNotificationsBtn=document.getElementById('openNotifications');if(openNotificationsBtn)openNotificationsBtn.onclick=openNotifications;
+    const staffMockBtn=document.getElementById('staffMock');if(staffMockBtn)staffMockBtn.onclick=()=>showToast('בגרסה הסופית ייפתח Login מאובטח');
     await loadUpdates();
     bindGoto();
   }catch(e){
