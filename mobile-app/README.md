@@ -1,6 +1,6 @@
 # אבי חולון - iOS App
 
-גרסת iOS של אתר הפועל ״אבי״ חולון.
+גרסת Beta iOS של הפועל ״אבי״ חולון.
 
 ## ארכיטקטורה
 - Capacitor + Vite
@@ -10,7 +10,9 @@
 - מקור ליגה: league-data.json
 - מקור סגל: team-data.json
 - Local Notifications לתזכורת אישית
-- Push Notifications ו-Staff Login יתווספו לאחר פתיחת Apple Developer והשלמת הרשאות
+- Notification Center מחובר ל-Supabase
+- Staff Login backend מוכן ומחכה לכתובות המייל המורשות
+- Push Notifications מלאים יופעלו לאחר פתיחת Apple Developer והשלמת הרשאות APNs
 
 ## הרצה מקומית
 ```bash
