@@ -1,4 +1,4 @@
-const CACHE='avi-holon-v12';
+const CACHE='avi-holon-v13';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon.svg','./youth-logo.svg','./league-data.json','./team-data.json','./schedule-data.json','./season.html','./league.html','./avi-cohen.html','./week-06.html','./week-07.html','./dress-code.html','./camp.html','./birthdays.html','./attendance.html','./messages.html','./team.html','./games.html','./staff-dashboard.html'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
