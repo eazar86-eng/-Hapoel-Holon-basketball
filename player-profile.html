@@ -45,6 +45,16 @@ main{padding:18px}
 @media(max-width:620px){.statsTop{grid-template-columns:repeat(3,1fr)}.statusLists{grid-template-columns:1fr}.stat strong{font-size:20px}}
 
 @media(max-width:620px){.teams{grid-template-columns:1fr}.hero h1{font-size:27px}}
+
+.statusTableWrap{margin-top:16px;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
+.statusTable{width:100%;border-collapse:collapse;min-width:520px}
+.statusTable th,.statusTable td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:right;font-size:13px}
+.statusTable th{background:#f4effa;color:var(--p);font-weight:950}
+.statusTable td:first-child,.statusTable th:first-child{width:58px;text-align:center}
+.statusTable td:last-child,.statusTable th:last-child{width:120px;text-align:center}
+.statusBadge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:950}
+.statusBadge.done{background:#e9f8ef;color:#17663c;border:1px solid #b8e2c7}
+.statusBadge.wait{background:#fff6df;color:#7a5a00;border:1px solid #ecd68b}
 </style>
 </head>
 <body>
@@ -73,6 +83,18 @@ main{padding:18px}
         <h3>⏳ מי עדיין לא מילא</h3>
         <div class="statusList" id="pendingPlayers"></div>
       </div>
+    </div>
+    <div class="statusTableWrap">
+      <table class="statusTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>שם השחקן</th>
+            <th>סטטוס</th>
+          </tr>
+        </thead>
+        <tbody id="statusTableBody"></tbody>
+      </table>
     </div>
     <div class="updated" id="statusUpdated">סטטוס מעודכן</div>
   </section>
@@ -109,6 +131,9 @@ fetch('player-profile-status.json',{cache:'no-store'})
     document.getElementById('pendingPlayers').innerHTML=pending.length
       ? pending.map(p=>'<span class="playerChip pending">'+p.name+'</span>').join('')
       : '<span class="playerChip ok">כולם מילאו 🎉</span>';
+    document.getElementById('statusTableBody').innerHTML=d.players.map((p,i)=>
+      '<tr><td>'+(i+1)+'</td><td>'+p.name+'</td><td><span class="statusBadge '+(p.filled?'done':'wait')+'">'+(p.filled?'✅ מילא':'⏳ טרם מילא')+'</span></td></tr>'
+    ).join('');
     const dt=(d.updatedAt||'').split('-').reverse().join('/');
     document.getElementById('statusUpdated').textContent='סטטוס מעודכן'+(dt?' · '+dt:'');
   })
