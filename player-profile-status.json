@@ -16,17 +16,17 @@
     {
       "name": "אריאל שחב",
       "englishName": "Ariel Shahav",
-      "filled": false
+      "filled": true
     },
     {
       "name": "הרינג בן אברהם",
       "englishName": "Haring Ben Avraham",
-      "filled": false
+      "filled": true
     },
     {
       "name": "נועם גני",
       "englishName": "Noam Gani",
-      "filled": false
+      "filled": true
     },
     {
       "name": "גיא כהן",
@@ -36,12 +36,12 @@
     {
       "name": "שי נזרוב",
       "englishName": "Shai Nazarov",
-      "filled": false
+      "filled": true
     },
     {
       "name": "שון נוי",
       "englishName": "Sean Noy",
-      "filled": false
+      "filled": true
     },
     {
       "name": "תומר צור ואזנה",
@@ -51,7 +51,7 @@
     {
       "name": "גיא יאגודייב",
       "englishName": "Guy Yagudiev",
-      "filled": false
+      "filled": true
     },
     {
       "name": "אוראל אל ים",
@@ -61,7 +61,7 @@
     {
       "name": "עמנואל לייפר",
       "englishName": "Emanuel Leifer",
-      "filled": false
+      "filled": true
     },
     {
       "name": "הדר שקולניק",
