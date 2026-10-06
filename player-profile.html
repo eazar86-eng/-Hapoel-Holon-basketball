@@ -26,6 +26,24 @@ main{padding:18px}
 .btn{display:flex;align-items:center;justify-content:center;text-decoration:none;background:var(--p);color:#fff;border-radius:13px;padding:13px 14px;font-weight:950}
 .note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:18px;text-align:center;font-weight:700}
 .home{position:fixed;left:18px;bottom:18px;background:var(--p);color:#fff;text-decoration:none;font-weight:950;border-radius:999px;padding:12px 16px;box-shadow:0 8px 24px rgba(53,24,95,.28)}
+
+.stats{margin:18px auto 0;max-width:700px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 8px 24px rgba(53,24,95,.07)}
+.statsTop{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.stat{background:#f7f3fb;border-radius:15px;padding:12px;text-align:center}
+.stat strong{display:block;color:var(--p);font-size:24px}
+.stat span{font-size:11px;color:var(--muted);font-weight:800}
+.progress{height:12px;background:#ece7f2;border-radius:999px;overflow:hidden;margin:15px 0 6px}
+.progressFill{height:100%;width:0;background:linear-gradient(90deg,var(--p2),var(--y));transition:width .35s ease}
+.statusLists{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.statusBox{border-radius:16px;padding:14px;background:#faf8fc;border:1px solid var(--line)}
+.statusBox h3{margin:0 0 9px;font-size:15px;color:var(--p)}
+.statusList{display:flex;flex-wrap:wrap;gap:7px}
+.playerChip{font-size:12px;font-weight:850;border-radius:999px;padding:7px 9px;background:#fff;border:1px solid var(--line)}
+.ok{background:#e9f8ef;border-color:#b8e2c7}
+.pending{background:#fff6df;border-color:#ecd68b}
+.updated{margin-top:10px;text-align:center;font-size:11px;color:var(--muted);font-weight:700}
+@media(max-width:620px){.statsTop{grid-template-columns:repeat(3,1fr)}.statusLists{grid-template-columns:1fr}.stat strong{font-size:20px}}
+
 @media(max-width:620px){.teams{grid-template-columns:1fr}.hero h1{font-size:27px}}
 </style>
 </head>
@@ -38,6 +56,26 @@ main{padding:18px}
   </div>
 </header>
 <main>
+
+  <section class="stats" aria-live="polite">
+    <div class="statsTop">
+      <div class="stat"><strong id="filledCount">0/14</strong><span>מילאו</span></div>
+      <div class="stat"><strong id="completionPct">0%</strong><span>מיצוי</span></div>
+      <div class="stat"><strong id="remainingCount">14</strong><span>נשארו</span></div>
+    </div>
+    <div class="progress"><div class="progressFill" id="progressFill"></div></div>
+    <div class="statusLists">
+      <div class="statusBox">
+        <h3>✅ מי כבר מילא</h3>
+        <div class="statusList" id="filledPlayers"><span class="playerChip">עדיין אף אחד</span></div>
+      </div>
+      <div class="statusBox">
+        <h3>⏳ מי עדיין לא מילא</h3>
+        <div class="statusList" id="pendingPlayers"></div>
+      </div>
+    </div>
+    <div class="updated" id="statusUpdated">סטטוס מעודכן</div>
+  </section>
   <div class="info">
     <strong>חשוב:</strong> כל שחקן ממלא פעם אחת בלבד. הטופס קצר ומותאם לטלפון. השדות בטופס באנגלית כדי שהמידע ייכנס בצורה אחידה לקובץ הקבוצה ולאפליקציית הסטטיסטיקה.
   </div>
@@ -52,5 +90,29 @@ main{padding:18px}
   <div class="note">לא נדרש מספר טלפון, דוא״ל, כתובת או מספר זהות.</div>
 </main>
 <a class="home" href="./">🏠 דף הבית</a>
+
+<script>
+fetch('player-profile-status.json',{cache:'no-store'})
+  .then(r=>r.json())
+  .then(d=>{
+    const filled=d.players.filter(p=>p.filled);
+    const pending=d.players.filter(p=>!p.filled);
+    const total=d.players.length;
+    const pct=total?Math.round((filled.length/total)*100):0;
+    document.getElementById('filledCount').textContent=filled.length+'/'+total;
+    document.getElementById('completionPct').textContent=pct+'%';
+    document.getElementById('remainingCount').textContent=pending.length;
+    document.getElementById('progressFill').style.width=pct+'%';
+    document.getElementById('filledPlayers').innerHTML=filled.length
+      ? filled.map(p=>'<span class="playerChip ok">'+p.name+'</span>').join('')
+      : '<span class="playerChip">עדיין אף אחד</span>';
+    document.getElementById('pendingPlayers').innerHTML=pending.length
+      ? pending.map(p=>'<span class="playerChip pending">'+p.name+'</span>').join('')
+      : '<span class="playerChip ok">כולם מילאו 🎉</span>';
+    const dt=(d.updatedAt||'').split('-').reverse().join('/');
+    document.getElementById('statusUpdated').textContent='סטטוס מעודכן'+(dt?' · '+dt:'');
+  })
+  .catch(()=>{document.getElementById('statusUpdated').textContent='לא ניתן לטעון את הסטטוס כרגע';});
+</script>
 </body>
 </html>
