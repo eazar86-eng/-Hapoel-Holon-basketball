@@ -1,0 +1,77 @@
+{
+  "team": "Hapoel Avi Holon",
+  "total": 14,
+  "updatedAt": "2026-10-06",
+  "players": [
+    {
+      "name": "איתן בשירי",
+      "englishName": "Eitan Bashiri",
+      "filled": false
+    },
+    {
+      "name": "נדב ברנשטיין",
+      "englishName": "Nadav Bernstein",
+      "filled": false
+    },
+    {
+      "name": "אריאל שחב",
+      "englishName": "Ariel Shahav",
+      "filled": false
+    },
+    {
+      "name": "הרינג בן אברהם",
+      "englishName": "Haring Ben Avraham",
+      "filled": false
+    },
+    {
+      "name": "נועם גני",
+      "englishName": "Noam Gani",
+      "filled": false
+    },
+    {
+      "name": "גיא כהן",
+      "englishName": "Guy Cohen",
+      "filled": false
+    },
+    {
+      "name": "שי נזרוב",
+      "englishName": "Shai Nazarov",
+      "filled": false
+    },
+    {
+      "name": "שון נוי",
+      "englishName": "Sean Noy",
+      "filled": false
+    },
+    {
+      "name": "תומר פליסטה",
+      "englishName": "Tomer Falista",
+      "filled": false
+    },
+    {
+      "name": "גיא יאגודייב",
+      "englishName": "Guy Yagudiev",
+      "filled": false
+    },
+    {
+      "name": "אוראל אל ים",
+      "englishName": "Orel El Yam",
+      "filled": false
+    },
+    {
+      "name": "עמנואל לייפר",
+      "englishName": "Emanuel Leifer",
+      "filled": false
+    },
+    {
+      "name": "הדר שקולניק",
+      "englishName": "Hadar Shkolnik",
+      "filled": false
+    },
+    {
+      "name": "מאיקי יהב",
+      "englishName": "Maiki Yahav",
+      "filled": false
+    }
+  ]
+}
