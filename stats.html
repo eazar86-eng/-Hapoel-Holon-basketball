@@ -66,7 +66,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:#fffffff2;backd
     <div class="hint">2. גע בשחקן והפעולה תירשם מיד</div>
     <div class="hint" id="transitionState"></div>
   </div>
-  <div class="lineupBar"><span id="lineupText"></span><button onclick="openLineup()">חמישייה / חילוף</button></div>
+  <div class="lineupBar"><span id="lineupText"></span><button onclick="openLineup('sub')">חמישייה / חילוף</button></div>
   <div class="lastbar"><span id="lastText">מוכן להזנה</span><button onclick="undo()">↶ בטל אחרון</button></div>
   <div class="roster" id="roster"></div>
   <button class="end" onclick="endQ()">סיום התקופה והצגת סיכום</button>
@@ -83,7 +83,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:#fffffff2;backd
 
 <section id="tools" class="view">
   <div class="card"><b>משחקים</b><div class="mini">כל המשחקים נשמרים מקומית במכשיר וניתן לעבור ביניהם מהרשימה למעלה.</div><button class="toolBtn" onclick="openSetup(false)">➕ משחק חדש</button></div>
-  <div class="card"><b>פלוס / מינוס</b><div class="mini">בחר חמישייה כדי שהמדד יחושב אוטומטית בכל סל שלנו או של היריבה.</div><button class="toolBtn" onclick="openLineup()">🏀 הגדרת חמישייה</button></div>
+  <div class="card"><b>פלוס / מינוס</b><div class="mini">בחר חמישייה כדי שהמדד יחושב אוטומטית בכל סל שלנו או של היריבה.</div><button class="toolBtn" onclick="openLineup('sub')">🏀 הגדרת חמישייה</button></div>
   <div class="card"><b>שמירה ושיתוף</b><div class="mini">כל פעולה נשמרת אוטומטית. במסך סיכום משחק ניתן לשתף סיכום או CSV מלא.</div></div>
   <div class="card"><button class="toolBtn danger" onclick="resetGame()">איפוס המשחק הנוכחי</button><button class="toolBtn danger" onclick="deleteGame()">מחיקת המשחק הנוכחי</button></div>
 </section>
@@ -106,7 +106,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:#fffffff2;backd
 </div></div>
 
 <div class="modal" id="lineModal"><div class="sheet">
-  <h3>חמישייה על המגרש</h3>
+  <h3 id="lineTitle">חמישייה על המגרש</h3>
   <div class="mini" id="lineHelp">בחר בדיוק 5 שחקנים. מעכשיו הפלוס/מינוס יתעדכן אוטומטית.</div>
   <div class="linePlayers" id="linePlayers" style="margin-top:10px"></div>
   <div class="sheetBtns"><button class="secondary" onclick="closeModal('lineModal')">סגור</button><button class="primary" onclick="saveLineup()">שמור חמישייה</button></div>
@@ -122,7 +122,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:#fffffff2;backd
   <div class="card"><b>הזנה מהירה</b><div class="mini">בחר פעולה ואז גע בשחקן. הפעולה נשארת פעילה עד שתבחר אחרת.</div></div>
   <div class="card"><b>קליעה לפי אזורים</b><div class="mini">מתחת לסל, חצי מרחק, שלוש ועונשין. אחוזי 2 נקודות מחושבים אוטומטית משני אזורי ה-2.</div></div>
   <div class="card"><b>מדדי רועי</b><div class="mini">איבודים, ריבאונד התקפה של היריבה, יחס אסיסטים לאיבודים, נקודות עד 9 שניות, שלשות מוקדמות, נקודות אחרי חטיפה ונקודות מהזדמנות שנייה.</div></div>
-  <div class="card"><b>פלוס/מינוס</b><div class="mini">סמן חמישייה. בכל סל של חולון החמישייה מקבלת פלוס, ובכל סל של היריבה מינוס.</div></div>
+  <div class="card"><b>חמישייה בכל רבע + פלוס/מינוס</b><div class="mini">בתחילת כל רבע האפליקציה שואלת מי החמישייה שעולה. במהלך הרבע עדכן חילופים דרך ״חמישייה / חילוף״. כך הפלוס/מינוס מחושב נכון לכל שחקן.</div></div>
   <button class="toolBtn" onclick="closeModal('helpModal')">הבנתי</button>
 </div></div>
 
@@ -140,7 +140,7 @@ var MAN=A.map(function(x){return x[0]});
 var DER=['m2','x2','trp','efga','e3a','pot','scp','pm'];
 var F=MAN.concat(DER);
 var L={ubm:'מתחת לסל ✓',ubx:'מתחת לסל ✗',mdm:'חצי מרחק ✓',mdx:'חצי מרחק ✗',m3:'שלוש ✓',x3:'שלוש ✗',m1:'עונשין ✓',x1:'עונשין ✗',or:'ריבאונד התקפה',dr:'ריבאונד הגנה',a:'אסיסט',s:'חטיפה',to:'איבוד',pf:'עבירה',ora:'ריבאונד התקפה של היריבה עליו'};
-var DBK='avi_stats_hybrid_v1',OLDK='avi_stats_07102026_v3',armed=localStorage.getItem('avi_armed_v2')||'ubm',range='game',toastTimer,tempLineup=[];
+var DBK='avi_stats_hybrid_v1',OLDK='avi_stats_07102026_v3',armed=localStorage.getItem('avi_armed_v2')||'ubm',range='game',toastTimer,tempLineup=[],lineMode='sub';
 
 function blank(){var o={};F.forEach(function(k){o[k]=0});return o}
 function nowISO(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -148,7 +148,7 @@ function fmtDate(x){if(!x)return'';if(x.indexOf('.')>0)return x;var a=x.split('-
 function newId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 function freshGame(meta){
  var q={};for(var i=1;i<=5;i++){q[i]={p:{},opp:0};P.forEach(function(pl){q[i].p[pl[0]]=blank()})}
- return{id:newId(),meta:meta||{opponent:'יריבה',date:nowISO(),category:'נערים י׳ אבי לאומית'},qtr:1,q:q,log:[],lineup:[],possStart:null,possSource:null,secondChance:false,created:Date.now()}
+ return{id:newId(),meta:meta||{opponent:'יריבה',date:nowISO(),category:'נערים י׳ אבי לאומית'},qtr:1,q:q,log:[],lineup:[],quarterStarters:{},quarterCurrentLineup:{},possStart:null,possSource:null,secondChance:false,created:Date.now()}
 }
 function normalizeGame(g){
  if(!g||!g.q)return freshGame();
@@ -157,7 +157,7 @@ function normalizeGame(g){
  if(g.meta.date&&g.meta.date.indexOf('.')>0){var a=g.meta.date.split('.');if(a.length==3)g.meta.date=a[2]+'-'+a[1]+'-'+a[0]}
  if(!g.meta.category)g.meta.category='נערים י׳ אבי לאומית';
  for(var q=1;q<=5;q++){if(!g.q[q])g.q[q]={p:{},opp:0};P.forEach(function(pl){if(!g.q[q].p[pl[0]])g.q[q].p[pl[0]]=blank();F.forEach(function(k){if(typeof g.q[q].p[pl[0]][k]!=='number')g.q[q].p[pl[0]][k]=0})})}
- if(!Array.isArray(g.log))g.log=[];if(!Array.isArray(g.lineup))g.lineup=[];if(!g.qtr)g.qtr=1;
+ if(!Array.isArray(g.log))g.log=[];if(!Array.isArray(g.lineup))g.lineup=[];if(!g.quarterStarters)g.quarterStarters={};if(!g.quarterCurrentLineup)g.quarterCurrentLineup={};if(!g.qtr)g.qtr=1;
  if(typeof g.possStart==='undefined')g.possStart=null;if(typeof g.possSource==='undefined')g.possSource=null;if(typeof g.secondChance==='undefined')g.secondChance=false;
  return g
 }
@@ -222,7 +222,7 @@ function signed(v){return v>0?'+'+v:String(v)}
 function arm(f){armed=f;localStorage.setItem('avi_armed_v2',f);renderActions()}
 function applyPM(g,q,delta,lineup){(lineup||[]).forEach(function(n){ps(g,q,n).pm+=delta})}
 function hit(n){
- var g=st(),x=ps(g,g.qtr,n),f=armed,pre={possStart:g.possStart,possSource:g.possSource,secondChance:g.secondChance},auto={},line=g.lineup.slice(),score=scoreForAction(f),elapsed=g.possStart?(Date.now()-g.possStart)/1000:null;
+ var g=st();if(g.lineup.length!=5){flash('לפני שמתחילים צריך לבחור את החמישייה שעלתה');openQuarterLineup();return}var x=ps(g,g.qtr,n),f=armed,pre={possStart:g.possStart,possSource:g.possSource,secondChance:g.secondChance},auto={},line=g.lineup.slice(),score=scoreForAction(f),elapsed=g.possStart?(Date.now()-g.possStart)/1000:null;
  x[f]++;
  if(isShot(f)&&elapsed!==null&&elapsed<=9){x.efga++;auto.efga=1;if(f=='m3'||f=='x3'){x.e3a++;auto.e3a=1}if(score){x.trp+=score;auto.trp=score}}
  if(score&&g.possSource=='steal'){x.pot+=score;auto.pot=score}
@@ -236,7 +236,7 @@ function hit(n){
  save();flash(playerName(n)+' · '+L[f]+(auto.trp?' · '+auto.trp+' נק׳ מעבר':''));render()
 }
 function addOpp(v){
- var g=st(),pre={possStart:g.possStart,possSource:g.possSource,secondChance:g.secondChance},line=g.lineup.slice();
+ var g=st();if(g.lineup.length!=5){flash('לפני שמתחילים צריך לבחור את החמישייה שעלתה');openQuarterLineup();return}var pre={possStart:g.possStart,possSource:g.possSource,secondChance:g.secondChance},line=g.lineup.slice();
  g.q[g.qtr].opp+=v;if(line.length==5)applyPM(g,g.qtr,-v,line);
  g.log.push({t:'o',q:g.qtr,v:v,pre:pre,lineup:line,pmDelta:line.length==5?-v:0,ts:Date.now()});
  g.possStart=Date.now();g.possSource='oppScore';g.secondChance=false;save();render()
@@ -250,13 +250,35 @@ function undo(){
 function renderLast(){var g=st(),e=g.log[g.log.length-1],el=document.getElementById('lastText');if(!e){el.textContent='מוכן להזנה';return}el.textContent=e.t=='p'?'אחרון: '+playerName(e.n)+' · '+L[e.f]+' · '+qName(e.q):'אחרון: '+g.meta.opponent+' +'+e.v+' · '+qName(e.q)}
 function qName(q){return q==5?'הארכה':'רבע '+q}
 function updateTransitionState(){var g=st(),e=document.getElementById('transitionState');if(!e||!g)return;if(!g.possStart){e.textContent='מעבר: ממתין לתחילת החזקה';return}var sec=(Date.now()-g.possStart)/1000;e.textContent=sec<=9?'⚡ חלון מעבר פעיל · '+sec.toFixed(1)+' / 9 שנ׳':'החזקה מסודרת · '+sec.toFixed(1)+' שנ׳'}
-function setQ(q){var g=st();g.qtr=q;save();render();scrollTo(0,0)}
-function switchGame(id){db.activeId=id;range='game';save();render();goGame()}
-function renderLineupBar(){var g=st(),el=document.getElementById('lineupText');if(g.lineup.length==5)el.innerHTML='<b>חמישייה:</b> '+g.lineup.map(playerName).join(' · ');else el.innerHTML='<b>פלוס/מינוס לא פעיל:</b> בחר 5 שחקנים'}
-function openLineup(){tempLineup=st().lineup.slice();renderLineModal();document.getElementById('lineModal').classList.add('on')}
-function renderLineModal(){document.getElementById('linePlayers').innerHTML=P.map(function(p){return'<button class="'+(tempLineup.indexOf(p[0])>=0?'on':'')+'" onclick="toggleLine('+p[0]+')">#'+p[0]+' '+p[1]+'</button>'}).join('');document.getElementById('lineHelp').textContent='נבחרו '+tempLineup.length+' מתוך 5'}
+function setQ(q){
+ var g=st();if(g.qtr==q)return;g.qtr=q;g.possStart=null;g.possSource=null;g.secondChance=false;
+ var saved=g.quarterCurrentLineup[q]||g.quarterStarters[q];g.lineup=Array.isArray(saved)?saved.slice():[];
+ save();render();scrollTo(0,0);if(g.lineup.length!=5)setTimeout(openQuarterLineup,50)
+}
+function switchGame(id){db.activeId=id;range='game';var g=st(),saved=g.quarterCurrentLineup[g.qtr]||g.quarterStarters[g.qtr];g.lineup=Array.isArray(saved)?saved.slice():[];save();render();goGame();if(g.lineup.length!=5)setTimeout(openQuarterLineup,50)}
+function renderLineupBar(){
+ var g=st(),el=document.getElementById('lineupText'),starter=g.quarterStarters[g.qtr];
+ if(g.lineup.length==5){el.innerHTML='<b>'+qName(g.qtr)+' · על המגרש:</b> '+g.lineup.map(playerName).join(' · ')+(starter&&starter.length==5?'<br><span class="mini">חמישייה שפתחה: '+starter.map(playerName).join(' · ')+'</span>':'')}
+ else el.innerHTML='<b>'+qName(g.qtr)+': טרם נבחרה חמישייה פותחת</b>'
+}
+function openLineup(mode){
+ var g=st();lineMode=mode||'sub';
+ tempLineup=lineMode=='starter'?[]:g.lineup.slice();
+ document.getElementById('lineTitle').textContent=lineMode=='starter'?'מי החמישייה שעולה ל'+qName(g.qtr)+'?':'חמישייה / חילוף · '+qName(g.qtr);
+ renderLineModal();document.getElementById('lineModal').classList.add('on')
+}
+function openQuarterLineup(){openLineup('starter')}
+function renderLineModal(){
+ document.getElementById('linePlayers').innerHTML=P.map(function(p){return'<button class="'+(tempLineup.indexOf(p[0])>=0?'on':'')+'" onclick="toggleLine('+p[0]+')">#'+p[0]+' '+p[1]+'</button>'}).join('');
+ document.getElementById('lineHelp').textContent=(lineMode=='starter'?'בחר את חמשת השחקנים שעולים לפתיחת '+qName(st().qtr)+'. ':'בחר מי נמצא כרגע על המגרש. ')+'נבחרו '+tempLineup.length+' מתוך 5'
+}
 function toggleLine(n){var i=tempLineup.indexOf(n);if(i>=0)tempLineup.splice(i,1);else if(tempLineup.length<5)tempLineup.push(n);else{flash('כבר נבחרו 5 שחקנים');return}renderLineModal()}
-function saveLineup(){if(tempLineup.length!=5){flash('צריך לבחור בדיוק 5 שחקנים');return}st().lineup=tempLineup.slice();save();closeModal('lineModal');render();flash('החמישייה עודכנה')}
+function saveLineup(){
+ if(tempLineup.length!=5){flash('צריך לבחור בדיוק 5 שחקנים');return}
+ var g=st();g.lineup=tempLineup.slice();g.quarterCurrentLineup[g.qtr]=tempLineup.slice();
+ if(lineMode=='starter')g.quarterStarters[g.qtr]=tempLineup.slice();
+ save();closeModal('lineModal');render();flash(lineMode=='starter'?'נשמרה החמישייה הפותחת של '+qName(g.qtr):'החמישייה על המגרש עודכנה')
+}
 
 function renderEvents(){
  var g=st(),arr=g.log.slice().reverse().slice(0,40),el=document.getElementById('eventList');
@@ -290,7 +312,7 @@ function endQ(){
  document.getElementById('periodBody').innerHTML='<div class="kpis">'+kpi(our(g,qs)+' : '+opp(g,qs),'תוצאה')+kpi(t.to,'איבודים')+kpi(t.ora,'ריבאונד התקפה של היריבה')+kpi(t.trp,'נק׳ ≤9 שנ׳')+kpi(astTo(t),'AST/TO')+kpi(t.scp,'2nd Chance')+'</div>';
  document.getElementById('nextBtn').style.display=g.qtr<5?'block':'none';document.getElementById('periodModal').classList.add('on');showSummaryNav()
 }
-function nextPeriod(){var g=st();if(g.qtr<5)g.qtr++;save();closeModal('periodModal');render();goGame()}
+function nextPeriod(){var g=st();if(g.qtr<5)g.qtr++;g.lineup=[];g.possStart=null;g.possSource=null;g.secondChance=false;save();closeModal('periodModal');render();goGame();setTimeout(openQuarterLineup,80)}
 function showSummaryNav(){document.querySelectorAll('.view').forEach(function(x){x.classList.remove('on')});document.getElementById('sum').classList.add('on');document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});document.querySelectorAll('nav button')[2].classList.add('on')}
 
 function openSetup(edit){
@@ -303,10 +325,10 @@ function saveSetup(){
  if(!opp||!date){flash('צריך להזין יריבה ותאריך');return}
  if(edit){var g=st();g.meta={opponent:opp,date:date,category:cat}}
  else{var g=freshGame({opponent:opp,date:date,category:cat});db.games.unshift(g);db.activeId=g.id;range='game'}
- save();closeModal('setupModal');render();goGame();flash(edit?'פרטי המשחק עודכנו':'נפתח משחק חדש מול '+opp)
+ save();closeModal('setupModal');render();goGame();flash(edit?'פרטי המשחק עודכנו':'נפתח משחק חדש מול '+opp);if(!edit)setTimeout(openQuarterLineup,80)
 }
 function deleteGame(){if(db.games.length<=1){flash('אי אפשר למחוק את המשחק היחיד');return}var g=st();if(!confirm('למחוק את המשחק מול '+g.meta.opponent+'?'))return;db.games=db.games.filter(function(x){return x.id!=g.id});db.activeId=db.games[0].id;save();render();flash('המשחק נמחק')}
-function resetGame(){var g=st();if(!confirm('לאפס את כל נתוני המשחק הנוכחי?'))return;var meta=g.meta,id=g.id,idx=db.games.findIndex(function(x){return x.id==id}),ng=freshGame(meta);ng.id=id;db.games[idx]=ng;save();render();flash('המשחק אופס')}
+function resetGame(){var g=st();if(!confirm('לאפס את כל נתוני המשחק הנוכחי?'))return;var meta=g.meta,id=g.id,idx=db.games.findIndex(function(x){return x.id==id}),ng=freshGame(meta);ng.id=id;db.games[idx]=ng;save();render();goGame();flash('המשחק אופס');setTimeout(openQuarterLineup,80)}
 
 function csvText(){
  var g=st(),qs=[1,2,3,4,5],h=['מספר','שחקן','נקודות','סל M','סל A','מיד M','מיד A','2P%','3P M','3P A','3P%','FT M','FT A','FT%','OREB','DREB','REB','AST','STL','TO','PF','ORB יריבה נגדו','+/-','נקודות עד 9 שניות','נקודות אחרי חטיפה','נקודות הזדמנות שנייה'],rows=[h.join(',')];
@@ -331,7 +353,7 @@ function openHelp(){document.getElementById('helpModal').classList.add('on')}
 function closeModal(id){document.getElementById(id).classList.remove('on')}
 function flash(t){var e=document.getElementById('toast');e.textContent='✓ '+t;e.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(function(){e.classList.remove('on')},1000)}
 
-save();render();setInterval(updateTransitionState,250);
+save();render();setInterval(updateTransitionState,250);setTimeout(function(){var g=st();if(g&&g.log.length==0&&(!g.quarterStarters[g.qtr]||g.quarterStarters[g.qtr].length!=5))openQuarterLineup()},120);
 </script>
 </body>
 </html>
