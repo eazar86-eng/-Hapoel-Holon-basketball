@@ -32,8 +32,8 @@ END:VEVENT
 BEGIN:VEVENT
 UID:holon-week10-1@eazar86-eng.github.io
 DTSTAMP:20261014T100000Z
-DTSTART;TZID=Asia/Jerusalem:20261018T203000
-DTEND;TZID=Asia/Jerusalem:20261018T211500
+DTSTART;TZID=Asia/Jerusalem:20261018T181500
+DTEND;TZID=Asia/Jerusalem:20261018T190000
 SUMMARY:הפועל חולון נוער | חדר כושר
 LOCATION:אייל - חדר כושר - פחים
 DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
@@ -86,7 +86,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:holon-week10-7@eazar86-eng.github.io
 DTSTAMP:20261014T100000Z
-DTSTART;TZID=Asia/Jerusalem:20261022T181500
+DTSTART;TZID=Asia/Jerusalem:20261022T173000
 DTEND;TZID=Asia/Jerusalem:20261022T190000
 SUMMARY:הפועל חולון נוער | חדר כושר
 LOCATION:אייל - חדר כושר - פחים
