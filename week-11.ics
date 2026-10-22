@@ -1,0 +1,80 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hapoel Holon Youth//Week 11//HE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:הפועל חולון נוער - שבוע 11
+X-WR-TIMEZONE:Asia/Jerusalem
+BEGIN:VTIMEZONE
+TZID:Asia/Jerusalem
+BEGIN:STANDARD
+TZOFFSETFROM:+0300
+TZOFFSETTO:+0200
+TZNAME:IST
+DTSTART:20261025T020000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:holon-week11-0@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261025T161500
+DTEND;TZID=Asia/Jerusalem:20261025T170000
+SUMMARY:הפועל חולון נוער | חדר כושר
+LOCATION:אייל · חדר כושר · פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-1@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261025T173000
+DTEND;TZID=Asia/Jerusalem:20261025T190000
+SUMMARY:הפועל חולון נוער | כדורסל
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-2@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261026T150000
+DTEND;TZID=Asia/Jerusalem:20261026T163000
+SUMMARY:הפועל חולון נוער | כדורסל
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-3@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261026T164500
+DTEND;TZID=Asia/Jerusalem:20261026T173000
+SUMMARY:הפועל חולון נוער | חדר כושר
+LOCATION:אייל · חדר כושר · פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-4@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261027T150000
+DTEND;TZID=Asia/Jerusalem:20261027T170000
+SUMMARY:הפועל חולון נוער | כדורסל
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-5@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261028T190000
+DTEND;TZID=Asia/Jerusalem:20261028T203000
+SUMMARY:הפועל חולון נוער | משחק בית · עירוני קרית אונו ברק
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-6@eazar86-eng.github.io
+DTSTAMP:20261022T080000Z
+DTSTART;TZID=Asia/Jerusalem:20261030T100000
+DTEND;TZID=Asia/Jerusalem:20261030T113000
+SUMMARY:הפועל חולון נוער | כדורסל
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
+END:VCALENDAR
