@@ -59,4 +59,13 @@ SUMMARY:הפועל חולון נוער | כדורסל
 LOCATION:פחים
 DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
 END:VEVENT
+BEGIN:VEVENT
+UID:holon-week11-wednesday-practice@eazar86-eng.github.io
+DTSTAMP:20261023T060000Z
+DTSTART;TZID=Asia/Jerusalem:20261028T190000
+DTEND;TZID=Asia/Jerusalem:20261028T203000
+SUMMARY:הפועל חולון נוער | אימון כדורסל
+LOCATION:פחים
+DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
+END:VEVENT
 END:VCALENDAR
