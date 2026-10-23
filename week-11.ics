@@ -51,24 +51,6 @@ LOCATION:אייל · חדר כושר · פחים
 DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
 END:VEVENT
 BEGIN:VEVENT
-UID:holon-week11-4@eazar86-eng.github.io
-DTSTAMP:20261022T080000Z
-DTSTART;TZID=Asia/Jerusalem:20261027T150000
-DTEND;TZID=Asia/Jerusalem:20261027T170000
-SUMMARY:הפועל חולון נוער | כדורסל
-LOCATION:פחים
-DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
-END:VEVENT
-BEGIN:VEVENT
-UID:holon-week11-5@eazar86-eng.github.io
-DTSTAMP:20261022T080000Z
-DTSTART;TZID=Asia/Jerusalem:20261028T190000
-DTEND;TZID=Asia/Jerusalem:20261028T203000
-SUMMARY:הפועל חולון נוער | משחק בית · עירוני קרית אונו ברק
-LOCATION:פחים
-DESCRIPTION:נערים י׳ אבי לאומית | רועי ששון
-END:VEVENT
-BEGIN:VEVENT
 UID:holon-week11-6@eazar86-eng.github.io
 DTSTAMP:20261022T080000Z
 DTSTART;TZID=Asia/Jerusalem:20261030T100000
