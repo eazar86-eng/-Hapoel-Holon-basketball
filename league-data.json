@@ -5,7 +5,7 @@
   "teamName": "הפועל חולון אבי",
   "teamId": 243,
   "sourceUrl": "https://ibasketball.co.il/league/2026-153/",
-  "syncedAt": "2026-10-08",
+  "syncedAt": "2026-10-24",
   "officialFixtures": [
     {
       "date": "21/10/2026",
@@ -21,25 +21,15 @@
       "awayScore": 68
     },
     {
-      "date": "22/11/2026",
-      "time": "20:30",
-      "competition": "נערים א׳ לאומית דרום",
-      "round": 2,
-      "home": "הפועל חולון אבי",
-      "away": "עירוני קרית אונו ברק",
-      "venue": "רח׳ אחד במאי 38, חולון",
-      "gameCode": 786096,
-      "status": "נדחה מ־28/10 ל־22/11"
-    },
-    {
       "date": "04/11/2026",
       "time": "20:30",
       "competition": "גביע המדינה לנערים א׳",
       "round": null,
       "home": "הפועל גבעתיים רועי",
       "away": "הפועל חולון אבי",
-      "venue": "",
-      "gameCode": null
+      "venue": "בי״ס תלם, סמטת צביה 5, גבעתיים",
+      "gameCode": null,
+      "sourceUrl": "https://ibasketball.co.il/cup/2026-907/"
     },
     {
       "date": "11/11/2026",
@@ -50,6 +40,17 @@
       "away": "הפועל חולון אבי",
       "venue": "רח׳ הזמיר 33, נס ציונה",
       "gameCode": 786108
+    },
+    {
+      "date": "22/11/2026",
+      "time": "20:30",
+      "competition": "נערים א׳ לאומית דרום",
+      "round": 2,
+      "home": "הפועל חולון אבי",
+      "away": "עירוני קרית אונו ברק",
+      "venue": "רח׳ אחד במאי 38, חולון",
+      "gameCode": 786096,
+      "status": "נדחה מ־28/10 ל־22/11"
     },
     {
       "date": "25/11/2026",
