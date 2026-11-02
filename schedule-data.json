@@ -3,8 +3,8 @@
   "start": "2026-11-01",
   "end": "2026-11-07",
   "source": "https://www.hapoelholonnoarbc.com/pp12",
-  "sourceName": "הפועל חולון נוער",
-  "syncedAt": "2026-10-30",
+  "sourceName": "הפועל חולון נוער · עדכון מנהל הקבוצה",
+  "syncedAt": "2026-11-02",
   "events": [
     {
       "date": "2026-11-01",
@@ -50,17 +50,10 @@
     },
     {
       "date": "2026-11-05",
-      "start": "19:00",
-      "end": "19:45",
-      "type": "אתלטיקה",
-      "place": "פריאל · אתלטיקה · מקווה ישראל"
-    },
-    {
-      "date": "2026-11-05",
-      "start": "19:45",
-      "end": "21:15",
+      "start": "18:30",
+      "end": "20:00",
       "type": "כדורסל",
-      "place": "מקווה ישראל · אולם"
+      "place": "פחים"
     },
     {
       "date": "2026-11-06",
@@ -137,5 +130,6 @@
       }
     ]
   },
-  "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1EVMZb2prxM2RC03z6JS9kStILwSHTsEnloHs2i6DcDo/edit?usp=sharing"
+  "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1EVMZb2prxM2RC03z6JS9kStILwSHTsEnloHs2i6DcDo/edit?usp=sharing",
+  "updatedFrom": "לו״ז שבוע 12 כפי שנשלח על ידי מנהל הקבוצה ב-02/11/2026"
 }
