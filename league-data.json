@@ -5,7 +5,7 @@
   "teamName": "הפועל חולון אבי",
   "teamId": 243,
   "sourceUrl": "https://ibasketball.co.il/league/2026-153/",
-  "syncedAt": "2026-11-02",
+  "syncedAt": "2026-11-03",
   "officialFixtures": [
     {
       "date": "21/10/2026",
@@ -29,7 +29,10 @@
       "away": "הפועל חולון אבי",
       "venue": "אולם תלם, סמטת צביה 5, גבעתיים",
       "gameCode": 779710,
-      "sourceUrl": "https://ibasketball.co.il/match/779710/"
+      "sourceUrl": "https://ibasketball.co.il/match/779710/",
+      "homeScore": 47,
+      "awayScore": 60,
+      "status": "הסתיים · 47:60 להפועל חולון אבי"
     },
     {
       "date": "11/11/2026",
@@ -164,6 +167,18 @@
       "gameCode": 786093,
       "source": "דיווח מנהל הקבוצה",
       "verifiedByIBBA": true
+    },
+    {
+      "date": "02/11/2026",
+      "home": "הפועל גבעתיים רועי",
+      "away": "הפועל חולון אבי",
+      "homeScore": 47,
+      "awayScore": 60,
+      "gameCode": 779710,
+      "competition": "גביע המדינה לנערים א׳",
+      "source": "אישור מפורש של מנהל הקבוצה",
+      "sourceUrl": "https://ibasketball.co.il/match/779710/",
+      "verifiedByIBBA": false
     }
   ],
   "table": [
