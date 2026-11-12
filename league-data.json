@@ -5,7 +5,7 @@
   "teamName": "הפועל חולון אבי",
   "teamId": 243,
   "sourceUrl": "https://ibasketball.co.il/league/2026-153/",
-  "syncedAt": "2026-11-06",
+  "syncedAt": "2026-11-12",
   "officialFixtures": [
     {
       "date": "21/10/2026",
@@ -42,7 +42,11 @@
       "home": "הפועל נס ציונה גיל",
       "away": "הפועל חולון אבי",
       "venue": "רח׳ הזמיר 33, נס ציונה",
-      "gameCode": 786108
+      "gameCode": 786108,
+      "homeScore": 92,
+      "awayScore": 64,
+      "status": "הסתיים · 92:64 להפועל נס ציונה גיל",
+      "sourceUrl": "https://ibasketball.co.il/match/786108/"
     },
     {
       "date": "22/11/2026",
@@ -159,6 +163,19 @@
   ],
   "results": [
     {
+      "date": "11/11/2026",
+      "home": "הפועל נס ציונה גיל",
+      "away": "הפועל חולון אבי",
+      "homeScore": 92,
+      "awayScore": 64,
+      "gameCode": 786108,
+      "competition": "נערים א׳ לאומית דרום",
+      "round": 3,
+      "source": "איגוד הכדורסל, דף קבוצת הפועל נס ציונה גיל",
+      "sourceUrl": "https://ibasketball.co.il/team/2071-הפועל-נס-ציונה-גיל/",
+      "verifiedByIBBA": true
+    },
+    {
       "date": "21/10/2026",
       "home": "הפועל ירושלים שי",
       "away": "הפועל חולון אבי",
@@ -254,13 +271,13 @@
     },
     {
       "team": "הפועל נס ציונה גיל",
-      "gp": 1,
-      "w": 1,
+      "gp": 2,
+      "w": 2,
       "l": 0,
-      "pf": 73,
-      "pa": 43,
-      "diff": 30,
-      "pts": 2
+      "pf": 165,
+      "pa": 107,
+      "diff": 58,
+      "pts": 4
     },
     {
       "team": "אליצור יבנה עמוס",
@@ -284,13 +301,13 @@
     },
     {
       "team": "הפועל חולון אבי",
-      "gp": 1,
+      "gp": 2,
       "w": 0,
-      "l": 1,
-      "pf": 68,
-      "pa": 71,
-      "diff": -3,
-      "pts": 1
+      "l": 2,
+      "pf": 132,
+      "pa": 163,
+      "diff": -31,
+      "pts": 2
     },
     {
       "team": "עירוני קרית אונו ברק",
@@ -313,5 +330,7 @@
       "pts": 1
     }
   ],
-  "feedUrl": "https://ibasketball.co.il/league/2026-153/?feed=xlsx&league_id=119943"
+  "feedUrl": "https://ibasketball.co.il/league/2026-153/?feed=xlsx&league_id=119943",
+  "scoreUpdatedAt": "2026-11-12",
+  "scoreUpdateNote": "תוצאת המשחק מול נס ציונה ב־11.11 אומתה בדף קבוצת נס ציונה באיגוד. נתוני הטבלה לחולון ולנס ציונה חושבו מתוצאות מאומתות; יתר הטבלה נשמרה מסנכרון קודם עד לעדכון הליגה הרשמי."
 }
