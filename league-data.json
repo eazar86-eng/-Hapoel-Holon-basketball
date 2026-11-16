@@ -5,7 +5,7 @@
   "teamName": "הפועל חולון אבי",
   "teamId": 243,
   "sourceUrl": "https://ibasketball.co.il/league/2026-153/",
-  "syncedAt": "2026-11-12",
+  "syncedAt": "2026-11-16",
   "officialFixtures": [
     {
       "date": "21/10/2026",
@@ -81,14 +81,15 @@
     },
     {
       "date": "09/12/2026",
-      "time": "",
+      "time": "20:30",
       "competition": "גביע המדינה לנערים א׳",
-      "round": null,
-      "home": "טרם נקבע",
-      "away": "טרם נקבע",
+      "round": 2,
+      "home": "הפועל עמק יזרעאל",
+      "away": "הפועל חולון אבי",
       "venue": "",
-      "gameCode": null,
-      "status": "מועד גביע · היריבה והשעה טרם פורסמו"
+      "gameCode": 22,
+      "status": "שיבוץ סיבוב 2 פורסם, אולם טרם פורסם",
+      "sourceUrl": "https://ibasketball.co.il/cup/2026-907/"
     },
     {
       "date": "16/12/2026",
