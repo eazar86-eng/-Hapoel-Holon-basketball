@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="he" dir="rtl">
-<head>
+<head><meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#35185f">
@@ -60,7 +60,7 @@ main{padding:18px}
 <body>
 <header class="hero">
   <div class="wrap">
-    <div class="brand"><img src="youth-logo.svg" alt="סמל הפועל חולון נוער"><span>הפועל חולון נוער</span></div>
+    <div class="brand"><img src="../youth-logo.svg" alt="סמל הפועל חולון נוער"><span>הפועל חולון נוער</span></div>
     <h1>פרטי שחקן לאפליקציית הסטטיסטיקה</h1>
     <p>Hapoel Avi Holon · בשיתוף מיקי גורקה. ממלאים את הפרטים פעם אחת וזהו.</p>
   </div>
@@ -111,10 +111,10 @@ main{padding:18px}
   </div>
   <div class="note">לא נדרש מספר טלפון, דוא״ל, כתובת או מספר זהות.</div>
 </main>
-<a class="home" href="./">🏠 דף הבית</a>
+<a class="home" href="../">🏠 דף הבית</a>
 
 <script>
-fetch('player-profile-status.json',{cache:'no-store'})
+fetch('../archive/player-profile-status.json',{cache:'no-store'})
   .then(r=>r.json())
   .then(d=>{
     const filled=d.players.filter(p=>p.filled);
